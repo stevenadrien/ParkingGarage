@@ -9,15 +9,9 @@
 #ifndef Vehicle_h
 #define Vehicle_h
 
-//
-//  Customer
-//  ParkingGarage
-//
-//  Created by Steven on 16/07/18.
-//  Copyright © 2018 Steven. All rights reserved.
-//
 
 class Vehicle
+
 {
 private:
     string make;
@@ -27,30 +21,30 @@ private:
 public:
     Vehicle(string mk, string plate)
     {
-        this.make = make;
-        this.plateNumber = plate;
+        make = mk;
+        plateNumber = plate;
         
     }
     
-    string getMake
+    string getMake()
     {
         return make;
     }
     
-    string setMake(string mk)
+    void setMake(string mk)
     {
         make = mk;
     }
     
     
-    string getPlateNumber
+    string getPlateNumber()
     {
         return plateNumber;
     }
     
-    string setPlateNumber(string plate)
+    void setPlateNumber(string plate)
     {
-        lastName = plate;
+        plateNumber = plate;
     }
     
     
@@ -71,11 +65,9 @@ public:
     
     
     
-}
+};
 
 
-
-#endif /* Customer_h */
 
 
 

@@ -12,30 +12,23 @@
 class Employee
 {
 private:
-    string login[5];
+    string login;
     
 public:
-    setLogin()
+    
+    string getLogin()
     {
-        
-        
+        return login;
     }
     
-    login()
+    void setLogin(string log)
     {
-        
-        
-        
+        login = log;
     }
-    
-Login:
-    
-    superman
-    
-    lollipop
+   
     
     
-}
+};
 
 
 

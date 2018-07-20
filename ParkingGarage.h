@@ -1,9 +1,9 @@
-o
 
 #ifndef ParkingGarage_h
 #define ParkingGarage_h
 
 #include "Customer.h"
+#include "Employee.h"
 
 class ParkingGarage
 {
@@ -36,6 +36,10 @@ private:
 public:
     
     ParkingGarage()
+    {
+        customerCount = 0;
+        
+    }
     
     
     
@@ -44,11 +48,10 @@ public:
         while(customerCount != 300)
         {
             customers[customerCount].createNewCustomer();
+
+            cout<<"New Customer created."<<endl;
             customerCount++;
-            
-            cout<<"hwatking 
-            
-            
+
         }
         
             
@@ -92,7 +95,7 @@ public:
     
     
     
-}
+};
 
 
 

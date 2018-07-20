@@ -19,21 +19,25 @@ private:
     string firstName;
     string lastName;
     int phoneNumber;
-    string parkingPassType;
+    ParkingPass pass;
     Vehicle vehicle;
-    Security credentials;
+   // Security credentials;
     
 public:
-    Customer(string fName, string lName, int pNumber, string pass, Vehicle car)
+    
+    Customer();
+    
+   /* Customer(string fName, string lName, int pNumber, char pass, Vehicle car)
     {
-        this.firstName = fName;
-        this.lastName = lName;
-        this.phoneNumber = pNumber;
-        this.parkingPassType = pass;
+        firstName = fName;
+        lastName = lName;
+        phoneNumber = pNumber;
+        parkingPassType = pass;
         
     }
+    */
     
-    string getFirstName
+    string getFirstName()
     {
         return firstName;
     }
@@ -44,7 +48,7 @@ public:
     }
     
     
-    string getlastName
+    string getlastName()
     {
         return lastName;
     }
@@ -55,7 +59,7 @@ public:
     }
     
     
-    int getphoneNumber
+    int getphoneNumber()
     {
         return phoneNumber;
     }
@@ -66,20 +70,10 @@ public:
     }
     
     
-    string getParkingPassType
-    {
-        return parkingPassType;
-    }
-    
-    void setParkingPassType(string pass)
-    {
-        parkingPassType = pass;
-    }
     
     
     void createNewCustomer()
     {
-        
         
         cout<<"Enter customer's first name:"<<endl;
         cin>>firstName;
@@ -90,18 +84,11 @@ public:
         cout<<"Enter customer's phone number:"<<endl;
         cin>>phoneNumber;
         
-        this.inputVehicleInfo();
         
-        cout<<"Enter parking pass type (p for premium, b for basic, d for day pass): "<<endl;
-        cin>>parkingPassType;
+        pass.setParkingPassInfo();
         
-        if(parkingPassType == 'p')
-        {
-            cout<<"Enter"
-        }
-        
-        
-        
+        vehicle.inputVehicleInfo();
+
         
     }
     
@@ -110,7 +97,7 @@ public:
     
     
     
-}
+};
 
 
 

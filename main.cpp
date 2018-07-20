@@ -15,6 +15,17 @@ int main()
     ParkingGarage parkingGarage;
     
     
+    parkingGarage.issueNewParkingPass();
+
+    
+    
+    
+    
+}
+
+void selectOptions()
+{
+   
     
     int userChoice;
     
@@ -43,7 +54,7 @@ int main()
         
     case 4:
         parkingGarage.displayBusinessAnalytics();
-    
+        
         
         
         
@@ -52,14 +63,6 @@ int main()
         
         
     } while(userChoice != -1);
-    
-    
-}
-
-void selectOptions()
-{
-   
-    
     
     
   

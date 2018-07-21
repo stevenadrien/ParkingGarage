@@ -1,41 +1,29 @@
-//
-//  Customer.h
-//  ParkingGarage
-//
-//  Created by Steven on 16/07/18.
-//  Copyright © 2018 Steven. All rights reserved.
-//
+#ifndef Customer_h
+#define Customer_h
 
 #include "Vehicle.h"
 #include "ParkingPass.h"
 #include "Security.h"
 
-#ifndef Customer_h
-#define Customer_h
+
 
 class Customer
 {
 private:
     string firstName;
     string lastName;
-    int phoneNumber;
+    string phoneNumber;
     ParkingPass pass;
     Vehicle vehicle;
    // Security credentials;
     
 public:
     
-    Customer();
-    
-   /* Customer(string fName, string lName, int pNumber, char pass, Vehicle car)
+    Customer()
     {
-        firstName = fName;
-        lastName = lName;
-        phoneNumber = pNumber;
-        parkingPassType = pass;
         
     }
-    */
+    
     
     string getFirstName()
     {
@@ -59,12 +47,12 @@ public:
     }
     
     
-    int getphoneNumber()
+    string getphoneNumber()
     {
         return phoneNumber;
     }
     
-    void setphoneNumber(int pNumber)
+    void setphoneNumber(string pNumber)
     {
         phoneNumber = pNumber;
     }
@@ -72,8 +60,10 @@ public:
     
     
     
+    
     void createNewCustomer()
     {
+        cout<<"****ADDING A CUSTOMER****"<<endl;
         
         cout<<"Enter customer's first name:"<<endl;
         cin>>firstName;
@@ -81,14 +71,23 @@ public:
         cout<<"Enter customer's last name:"<<endl;
         cin>>lastName;
         
-        cout<<"Enter customer's phone number:"<<endl;
+        cout<<"Enter customer's phone number (format; 1234567890):"<<endl;
         cin>>phoneNumber;
         
+        vehicle.inputVehicleInfo();
         
         pass.setParkingPassInfo();
         
-        vehicle.inputVehicleInfo();
+        
+        
+        
 
+        
+    }
+    
+    char getParkingPassType()
+    {
+        return pass.getParkingPassType();
         
     }
     

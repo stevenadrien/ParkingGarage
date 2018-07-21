@@ -1,33 +1,31 @@
-//
-//  main.cpp
-//  ParkingGarage
-//
-//  Created by Steven on 16/07/18.
-//  Copyright © 2018 Steven. All rights reserved.
-//
 using namespace std;
+
 
 #include <iostream>
 #include "ParkingGarage.h"
+
+
+
 
 int main()
 {
     ParkingGarage parkingGarage;
     
-    
-    parkingGarage.issueNewParkingPass();
-
-    
-    
-    
-    
-}
-
-void selectOptions()
-{
-   
-    
     int userChoice;
+    
+    string userLogin;
+    
+    cout<<"Welcome to the Parking Garage System."<<endl;
+    cout<<"Please type in your login password to gain access to the system"<<endl;
+    
+    cin>>userLogin;
+    
+    if(userLogin == parkingGarage.getLogin())
+    {
+        cout<<"Login successful.  Welcome "<<parkingGarage.getAdminName()<<" :)"<<endl<<endl<<endl;
+    }
+        
+        
     
     do
     {
@@ -39,31 +37,35 @@ void selectOptions()
         
         cin >> userChoice;
         
-        switch(userChoice)
+    switch(userChoice)
+        {
         
-    case 1:
-        parkingGarage.issueNewPass();
-        break;
+            case 1:
+                parkingGarage.addACustomer();
+                break;
         
-    case 2:
-        parkingGarage.renewParkingPass();
-        break;
+            case 2:
+                parkingGarage.renewParkingPass();
+                break;
         
-    case 3:
-        parkingGarage.setParkingPassPrices();
+            case 3:
+                parkingGarage.setParkingPassPrices();
+                break;
         
-    case 4:
-        parkingGarage.displayBusinessAnalytics();
-        
-        
-        
-        
-        cout<<"Total Revenue Generated: "<<totalRevenueGenerated<<endl;
-        cout
-        
+            case 4:
+                parkingGarage.displayBusinessAnalytics();
+                break;
+        }
+    
         
     } while(userChoice != -1);
     
     
-  
+    
+    
+    
+    
+    
 }
+
+

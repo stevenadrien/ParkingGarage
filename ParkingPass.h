@@ -1,13 +1,8 @@
-//
-//  ParkingPass.h
-//  ParkingGarage
-//
-//  Created by Steven on 19/07/18.
-//  Copyright © 2018 Steven. All rights reserved.
-//
-
 #ifndef ParkingPass_h
 #define ParkingPass_h
+
+
+
 
 class ParkingPass
 {
@@ -16,9 +11,14 @@ private:
     char parkingPassType;
     int parkingSpot;
     
+
+    
 public:
     
-    ParkingPass();
+    ParkingPass()
+    {
+        
+    }
     
     char getParkingPassType()
     {
@@ -50,7 +50,25 @@ public:
         {
             cout<<"Enter customer's reserved parking spot number (from 1-100): "<<endl;
             cin>>parkingSpot;
+            cout<<"Premium pass issued"<<endl;
+            
+            
+            
         }
+        
+        if(parkingPassType == 'b')
+        {
+            cout<<"Basic pass issued"<<endl;
+            
+        }
+        
+        if(parkingPassType == 'd')
+        {
+            cout<<"Day pass issued"<<endl;
+            
+
+        }
+        
         
     }
     

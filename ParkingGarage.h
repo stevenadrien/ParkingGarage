@@ -4,6 +4,7 @@
 
 #include "Customer.h"
 #include "Employee.h"
+#include "Operations.h"
 
 
 
@@ -17,7 +18,7 @@ private:
     Customer customers[300];
     int customerCount;
     Employee admins;
-    
+    Operations operations;
     
 
     int premiumPassPrice = 150;
@@ -130,7 +131,7 @@ public:
     
     void setParkingPassPrices()
     {
-        cout<<"****PARKING PRICES SETTINGS****"<<endl;
+        cout<<"****PARKING PRICES SETTINGS****"<<endl<<endl;
         
         cout<<"Enter the desired price for a premium pass"<<endl;
         cin>>premiumPassPrice;
@@ -154,8 +155,22 @@ public:
     
     void displayBusinessAnalytics()
     {
+        cout<<"****BUSINESS ANALYTICS****"<<endl<<endl;
         
+        getParkingPassPrices();
         
+        cout<<"Total revenue generated: $"<<totalRevenueGenerated<<endl;
+        cout<<"Total revenue generated from premium pass sales: $"<<totalRevenueGeneratedFromPremium<<endl;
+        cout<<"Total revenue generated from basic pass sales: $"<<totalRevenueGeneratedFromBasic<<endl;
+        cout<<"Total revenue generated from day pass sales: $"<<totalRevenueGeneratedFromDay<<endl<<endl;
+    
+        
+        cout<<"Total passes left: "<<totalPassesLeft<<endl;
+        cout<<"Total premium passes left: "<<totalPremiumPassesLeft<<endl;
+        cout<<"Total basic passes left: "<<totalBasicPassesLeft<<endl;
+        cout<<"Total day passes left: "<<totalDayPassesLeft<<endl<<endl;
+        
+
         
     }
     

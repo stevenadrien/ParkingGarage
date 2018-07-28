@@ -1,6 +1,8 @@
 #ifndef ParkingPass_h
 #define ParkingPass_h
 
+#include "ParkingGarage.h"
+
 
 
 

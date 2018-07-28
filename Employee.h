@@ -4,7 +4,7 @@
 class Employee
 {
 private:
-    string login;
+    string login = "superman";
     string name = "Harry";
     
 public:
@@ -28,10 +28,10 @@ public:
     {
         name = nm;
     }
-    }
-    
-    
 };
+    
+    
+
 
 
 

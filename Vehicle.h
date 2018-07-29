@@ -12,6 +12,8 @@ private:
     string make;
     string model;
     string plateNumber;
+    bool currentlyInGarage;
+
     
     
 public:
@@ -72,6 +74,19 @@ public:
     {
         plateNumber = plate;
     }
+    
+    
+    bool isItCurrentlyInGarage
+    {
+        return currentlyInGarage;
+    }
+    
+    void enteringTheGarage
+    {
+        currentlyInGarage = true;
+    }
+    
+    
     
     
     void inputVehicleInfo()

@@ -56,6 +56,13 @@ public:
         totalBasicPassesLeft=150;
         totalDayPassesLeft=50;
         
+        totalRevenueGenerated = 0;
+        totalRevenueGeneratedFromPremiumPasses = 0;
+        totalRevenueGeneratedFromBasicPasses = 0;
+        totalRevenueGeneratedFromDayPasses = 0;
+        
+        
+        totalCarsCurrentlyInGarage = 0;
     }
     
     
@@ -161,81 +168,57 @@ public:
     
     
     
-    //Current state of the garage
+    //Garage-related functions// state of the garage
     int getTotalCarsCurrentlyInGarage()
     {
         return totalCarsCurrentlyInGarage;
     }
     
     
-    //Garage-related functions
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //"Advanced" parking pass related functions
-    void issuePremiumPass()
+ 
+    void aCarHasEnteredInGarage()
     {
-        if(getTotalPasses && getPremiumPassPrice() != 0)
-        {
-            totalPassesLeft--;
-            totalPremiumPassesLeft--;
-        
-            totalRevenueGenerated+=premiumPassPrice;
-            totalRevenueGeneratedFromPremiumPasses+=premiumPassPrice;
-        }
-        
-        else
-        {
-            cout<<"All premium passes have been issued.  Unable to issue another one..sorry :("
-        }
-        
+        totalCarsCurrentlyInGarage++;
     }
     
-    void issueBasicPass()
+    void aCarHasExitedInGarage()
     {
-        if(getTotalPasses && getBasicPassPrice() != 0)
-        {
-            totalPassesLeft--;
-            totalBasicPassesLeft--;
-        
-            totalRevenueGenerated+=basicPassPrice;
-            totalRevenueGeneratedFromBasicPasses+=basicPassPrice;
-        }
-        
-        else
-        {
-            cout<<"All basic passes have been issued.  Unable to issue another one..sorry :("
-        }
-        
-        
+        totalCarsCurrentlyInGarage--;
     }
     
-    void issueDayPass()
+    
+    
+    
+    
+    
+    
+    
+    //Sales-related and operations related functions (dealing with revenue and pass counts)
+    void premiumPassIssued()
     {
-        if(getTotalPasses && getDayPassPrice() != 0)
-        {
-            totalPassesLeft--;
-            totalDayPassesLeft--;
+        totalPassesLeft--;
+        totalPremiumPassesLeft--;
         
-            totalRevenueGenerated+=dayPassPrice;
-            totalRevenueGeneratedFromDayPasses+=premiumPassPrice;
-        }
+        totalRevenueGenerated+=premiumPassPrice;
+        totalRevenueGeneratedFromPremiumPasses+=premiumPassPrice;
+    }
+    
+    void basicPassIssued()
+    {
+        totalPassesLeft--;
+        totalBasicPassesLeft--;
         
-
-        else
-        {
-            cout<<"All day passes have been issued.  Unable to issue another one..sorry :("
-        }
+        totalRevenueGenerated+=basicPassPrice;
+        totalRevenueGeneratedFromBasicPasses+=basicPassPrice;
+    }
+    
+    void dayPassIssued()
+    {
+        totalPassesLeft--;
+        totalDayPassesLeft--;
         
+        totalRevenueGenerated+=dayPassPrice;
+        totalRevenueGeneratedFromDayPasses+=premiumPassPrice;
     }
     
     

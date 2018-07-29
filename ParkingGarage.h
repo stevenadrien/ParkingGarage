@@ -1,189 +1,107 @@
+#ifndef ParkingPass_h
+#define ParkingPass_h
 
-#ifndef ParkingGarage_h
-#define ParkingGarage_h
-
-#include "Customer.h"
-#include "Employee.h"
-#include "Operations.h"
+#include "ParkingGarage.h"
+#include <ctime>
 
 
 
-class ParkingGarage
+
+class ParkingPass
 {
-    //Data structure holding a set of customers with fixed-size capacity of 300
-    //150 basic
-    //100 premium
-    //50 day passes
+    
 private:
-    Customer customers[300];
-    int customerCount;
-    Employee admins;
-    Operations operations;
+    char parkingPassType;
+    int parkingSpot;
+    string duration;
+    Date dateCreated;
+    Date expirationDate;
+    
+    
     
 
-    int premiumPassPrice = 150;
-    int basicPassPrice = 50;
-    int dayPassPrice = 5;
-    
-    int totalPassesLeft=300;
-    int totalPremiumPassesLeft=100;
-    int totalBasicPassesLeft=150;
-    int totalDayPassesLeft=50;
-    
-
-    
-    
-    int totalRevenueGenerated;
-    int totalRevenueGeneratedFromPremium;
-    int totalRevenueGeneratedFromBasic;
-    int totalRevenueGeneratedFromDay;
-    
     
 public:
     
-    ParkingGarage()
+    ParkingPass()
     {
-        customerCount = 0;
         
     }
     
-    
-    string getLogin()
+    char getParkingPassType()
     {
-        return admins.getLogin();
-    
+        return parkingPassType;
     }
     
-    string getAdminName()
+    void setParkingPassType(char pass)
     {
-        return admins.getName();
+        parkingPassType = pass;
+    }
+    
+    int getParkingSpot()
+    {
+        return parkingSpot;
+    }
+    
+    void setParkingSpot(int spotNumber)
+    {
+        parkingSpot = spotNumber;
+    }
+    
+    string getDuration()
+    {
+        return duration;
+    }
+    
+    void setDuration(string dur)
+    {
+        duration = dur;
     }
     
     
-    void addACustomer()
+    
+    
+    
+    void setParkingPassInfo()
     {
-        if(customerCount != 300)
+        cout<<"Enter parking pass type (p for premium, b for basic, d for day pass): "<<endl;
+        cin>>parkingPassType;
+        
+        if(parkingPassType == 'p')
         {
-            customers[customerCount].createNewCustomer();
-
-
-            if(customers[customerCount].getParkingPassType() == 'p')
-            {
-                totalPassesLeft--;
-                totalPremiumPassesLeft--;
-                
-                totalRevenueGenerated+=premiumPassPrice;
-                totalRevenueGeneratedFromPremium+=premiumPassPrice;
-                
-                
-            }
-            
-            if(customers[customerCount].getParkingPassType() == 'b')
-            {
-                totalPassesLeft--;
-                totalBasicPassesLeft--;
-                
-                totalRevenueGenerated+=basicPassPrice;
-                totalRevenueGeneratedFromBasic+=basicPassPrice;
-                
-            }
-            
-            if(customers[customerCount].getParkingPassType() == 'd')
-            {
-                totalPassesLeft--;
-                totalDayPassesLeft--;
-                
-                totalRevenueGenerated+=dayPassPrice;
-                totalRevenueGeneratedFromDay+=dayPassPrice;
-                
-            }
-            
-            
-            cout<<"New Customer created."<<endl<<endl;
-            
-            customerCount++;
-
-
+            duration = "month";
+            cout<<"Enter customer's reserved parking spot number (from 1-100): "<<endl;
+            cin>>parkingSpot;
+            cout<<"Premium pass issued"<<endl;
         }
         
-            
+        if(parkingPassType == 'b')
+        {
+            duration = "month";
+            cout<<"Basic pass issued"<<endl;
+        }
+        
+        if(parkingPassType == 'd')
+        {
+            duration = "day";
+            cout<<"Day pass issued"<<endl;
+        }
+        
         
     }
     
-    void renewParkingPass()
+    bool isExpired()
     {
-        
-        
-        
-    }
-    
-    
-    void getParkingPassPrices()
-    {
-        cout<<"Price for a premium pass: $"<<premiumPassPrice<<endl;
-        
-        cout<<"Price for a basic pass: $"<<basicPassPrice<<endl;
-        
-        cout<<"Price for a day pass: $"<<dayPassPrice<<endl<<endl;
-        
+        if(getCurrentDate == expirationDate || getCurrentDate > expirationDate)
+        {
+            return true;
+        }
         
     }
-    
-    void setParkingPassPrices()
-    {
-        cout<<"****PARKING PRICES SETTINGS****"<<endl<<endl;
-        
-        cout<<"Enter the desired price for a premium pass"<<endl;
-        cin>>premiumPassPrice;
-        
-        cout<<"Enter the desired price for a basic pass"<<endl;
-        cin>>basicPassPrice;
-        
-        cout<<"Enter the desired price for a day pass"<<endl;
-        cin>>dayPassPrice;
-        
-        cout<<"Parking prices have been set.  Here are the new prices"<<endl;
-        
-        getParkingPassPrices();
-        
-        
-    }
-    
-   
-    
-    
-    
-    void displayBusinessAnalytics()
-    {
-        cout<<"****BUSINESS ANALYTICS****"<<endl<<endl;
-        
-        getParkingPassPrices();
-        
-        cout<<"Total revenue generated: $"<<totalRevenueGenerated<<endl;
-        cout<<"Total revenue generated from premium pass sales: $"<<totalRevenueGeneratedFromPremium<<endl;
-        cout<<"Total revenue generated from basic pass sales: $"<<totalRevenueGeneratedFromBasic<<endl;
-        cout<<"Total revenue generated from day pass sales: $"<<totalRevenueGeneratedFromDay<<endl<<endl;
-    
-        
-        cout<<"Total passes left: "<<totalPassesLeft<<endl;
-        cout<<"Total premium passes left: "<<totalPremiumPassesLeft<<endl;
-        cout<<"Total basic passes left: "<<totalBasicPassesLeft<<endl;
-        cout<<"Total day passes left: "<<totalDayPassesLeft<<endl<<endl;
-        
-
-        
-    }
-    
-    
-    
-    
-    
     
     
     
 };
 
 
-
-
-#endif /* ParkingGarage_h */
+#endif /* ParkingPass_h */

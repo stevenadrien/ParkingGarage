@@ -17,7 +17,6 @@ private:
     string duration;
     Date dateCreated;
     Date expirationDate;
-    bool currentlyInGarage;
     
     
     
@@ -61,15 +60,7 @@ public:
         duration = dur;
     }
     
-    bool isItCurrentlyInGarage
-    {
-        return currentlyInGarage;
-    }
-    
-    void enteringTheGarage
-    {
-        currentlyInGarage = true;
-    }
+   
     
     
     

@@ -24,7 +24,7 @@ public:
         
     }
     
-    
+    //Basic relevant customer-related functions (getters and setters for those respective variables)
     string getFirstName()
     {
         return firstName;
@@ -58,8 +58,26 @@ public:
     }
     
     
+    char getParkingPassType()
+    {
+        return pass.getParkingPassType();
+        
+    }
+    
+    bool isPassValid()
+    {
+        
+        
+    }
+    
+    string getCustomerVehicle()
+    {
+        return vehicle.getYear() + " " + vehicle.getMake() + " " vehicle.getModel();
+    }
     
     
+    
+    //"Advanced functions
     
     void createNewCustomer()
     {
@@ -77,19 +95,9 @@ public:
         vehicle.inputVehicleInfo();
         
         pass.setParkingPassInfo();
-        
-        
-        
-        
-
-        
     }
     
-    char getParkingPassType()
-    {
-        return pass.getParkingPassType();
-        
-    }
+    
     
     
     

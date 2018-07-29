@@ -46,6 +46,13 @@ public:
     }
     
     
+    //Relevant functions of the parking garage ; DEH MEATZZ OF DEH PROGRAM
+    //Add a customer
+    //Renew a parking pass
+    //Park a car in the garage;; check if its a customer. if so, let him in; else fukkk off m8
+    //"Un-park" a car from the garage; decrement current car park
+    //Bizzz analytics
+    //Set parking pass prices
     void addACustomer()
     {
         if(customerCount != 300)
@@ -55,21 +62,21 @@ public:
 
             if(customers[customerCount].getParkingPassType() == 'p')
             {
-                operations.issuePremiumPass();
+                operations.premiumPassIssued();
                 
                 
             }
             
             if(customers[customerCount].getParkingPassType() == 'b')
             {
-                operations.issueBasicPass();
+                operations.basicPassIssued();
 
                 
             }
             
             if(customers[customerCount].getParkingPassType() == 'd')
             {
-                operations.issueDayPass();
+                operations.dayPassIssued();
 
                 
             }
@@ -82,14 +89,60 @@ public:
 
         }
         
+        else if(customerCount == 300)
+        {
+            cout<<"Parking garage at maximum customer capacity.  I'm sorry but we cannot service you!"<<endl;
+            return;
+        }
+        
             
         
     }
     
-    void renewParkingPass()
+    void renewParkingPass(int customerID)
     {
         
         
+        
+    }
+    
+    void parkACar(int id)
+    {
+        if(customers[id].isPassValid == true)
+        {
+            if(customers[id].isItCurrentlyInTheGarage == false)
+            {
+                customers[id].enteringTheGarage;
+                cout<<"Customer #" + id + " " + customers[id].getName() + " has entered the garage!"<<endl;
+                operations.aCarHasEnteredInGarage();
+            }
+            
+            else
+            {
+                cout<<"Customer #" + id + " " + customers[id].getName() + " is..already in the garage..."<<endl;
+                cout<<"Someone may have forged their credentials and attempting to access the parking garage illegally"<<endl;
+            }
+        }
+        
+        else
+        {
+            cout<<"Customer #" + id + " " + customers[id].getName() + " no longer has a valid parking pass and, thus, is no longer authorized to enter the parking garage."<<endl;
+            
+            int choice;
+            
+            cout<<"Would they like to renew their parking pass? Enter 1 for yes, or 0 for no: "<<endl;
+            cin>>choice;
+            
+            if(choice == 0)
+            {
+                return;
+            }
+            
+            if(choice == 1)
+            {
+                renewParkingPass(id);
+            }
+            
         
     }
     
@@ -110,15 +163,17 @@ public:
         cout<<"****PARKING PRICES SETTINGS****"<<endl<<endl;
         
         cout<<"Enter the desired price for a premium pass"<<endl;
-        cin>>premiumPassPrice;
+        cin>>operations.setPremiumPassPrice(int newPremium);
         
         cout<<"Enter the desired price for a basic pass"<<endl;
-        cin>>basicPassPrice;
+        cin>>operations.setBasicPassPrice(int newBasic);
+
         
         cout<<"Enter the desired price for a day pass"<<endl;
-        cin>>dayPassPrice;
+        cin>>operations.setDayPassPrice(int newDay);
+
         
-        cout<<"Parking prices have been set.  Here are the new prices"<<endl;
+        cout<<"Parking prices have been set.  Here are the new prices:"<<endl;
         
         getParkingPassPrices();
         

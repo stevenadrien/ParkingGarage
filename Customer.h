@@ -66,8 +66,20 @@ public:
     
     bool isPassValid()
     {
-        
-        
+        if(pass.isItExpired == true)
+        {
+            return false;
+        }
+            
+        if(pass.isItExpired == false)
+        {
+            return true;
+        }
+    }
+    
+    string getCustomerName()
+    {
+        return firstName + " " + lastName;
     }
     
     string getCustomerVehicle()

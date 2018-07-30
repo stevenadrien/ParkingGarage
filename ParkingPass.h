@@ -15,8 +15,8 @@ private:
     char parkingPassType;
     int parkingSpot;
     string duration;
-    Date dateCreated;
-    Date expirationDate;
+   // Date dateCreated;
+   // Date expirationDate;
     
     
     
@@ -25,9 +25,10 @@ private:
     
 public:
     
+    
     ParkingPass()
     {
-        currentlyInGarage = false;
+
     }
     
     char getParkingPassType()
@@ -68,68 +69,10 @@ public:
     //"Advanced" functions (related to customer issues; valid passes//setting parking spot info;; typically
     //essentially ties into some higher level function in a "parent" class
     
-    void setParkingPassInfo()
-    {
-        while(bool flag = false)
-        {
-            cout<<"Enter parking pass type (p for premium, b for basic, d for day pass): "<<endl;
-            cin>>parkingPassType;
-        
-            if(parkingPassType == 'p')
-            {
-                if(operations.getTotalPasses && operations.getTotalPremiumPassesLeft() != 0)
-                {
-                    int spot;
-                    duration = "month";
-                    cout<<"Enter customer's reserved parking spot number (from 1-100): "<<endl;
-                    cin>>parkingSpot;
-                    cout<<"Premium pass issued"<<endl;
-                    flag = true;
-                }
-            
-                else
-                {
-                    cout<<"No more premium passes available.  Please select another parking pass tier"<<endl;
-                    setParkingPassInfo();
-                }
-        
-                if(parkingPassType == 'b')
-                {
-                    if(operations.getTotalPasses && operations.getTotalBasicPassesLeft() != 0)
-                    {
-                        duration = "month";
-                        cout<<"Basic pass issued"<<endl;
-                        flag = true;
-                    }
-                    
-                    else
-                    {
-                        cout<<"No more basic passes available.  Please select another parking pass tier"<<endl;
-                        setParkingPassInfo();
-                    }
-                    
-                    
-                }
-        
-                if(parkingPassType == 'd')
-                {
-                    if(operations.getTotalPasses && operations.getTotalDayPassesLeft() != 0)
-                    {
-                        duration = "day";
-                        cout<<"Day pass issued"<<endl;
-                        flag = true;
-                    }
-                    
-                    else
-                    {
-                        cout<<"No more day passes available.  Please select another parking pass tier"<<endl;
-                        setParkingPassInfo();
-                    }
-                }
-
-            }
     
-    bool isItExpired()
+
+    
+   /* bool isItExpired()
     {
         if(getCurrentDate == expirationDate || getCurrentDate > expirationDate)
         {
@@ -137,7 +80,7 @@ public:
         }
         
     }
-    
+    */
     
     
 };

@@ -51,11 +51,15 @@ int main()
                 break;
         
             case 2:
-                parkingGarage.renewParkingPass();
+                int customerID;
+                cout<<"Please enter the customer ID of the person desiring to renew their parking pass: "<<endl;
+                cin>>customerID;
+                
+                parkingGarage.renewParkingPass(customerID);
                 break;
         
             case 3:
-                parkingGarage.setParkingPassPrices();
+                parkingGarage.showCurrentPassPrices();
                 break;
         
             case 4:

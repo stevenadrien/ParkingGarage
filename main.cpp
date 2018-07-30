@@ -5,9 +5,9 @@ using namespace std;
 #include "ParkingGarage.h"
 
 
-//fills garage- making sure
-//add car (parked in the garage)
-//remove car (left garage)
+//fills garage- making sure;;
+//park car (parked in the garage);;;parkACar(int customerID)
+//unpark car (left garage);;;unParkACar(int customerID)
 //edit customer info
 //
 //remove vehicle

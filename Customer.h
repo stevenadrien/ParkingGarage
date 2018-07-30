@@ -64,19 +64,8 @@ public:
         
     }
     
-    bool isPassValid()
-    {
-        if(pass.isItExpired == true)
-        {
-            return false;
-        }
-            
-        if(pass.isItExpired == false)
-        {
-            return true;
-        }
-    }
     
+    //Nice-to-have functions (related to piecing data together)
     string getCustomerName()
     {
         return firstName + " " + lastName;
@@ -84,12 +73,12 @@ public:
     
     string getCustomerVehicle()
     {
-        return vehicle.getYear() + " " + vehicle.getMake() + " " vehicle.getModel();
+        return vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel();
     }
     
     
     
-    //"Advanced functions
+    //"Advanced" functions (related to ACTUAL software functionalities)
     
     void createNewCustomer()
     {
@@ -106,13 +95,54 @@ public:
         
         vehicle.inputVehicleInfo();
         
-        pass.setParkingPassInfo();
     }
     
     
     
+    //Higher level functions//APIs (related to exposing data to higher level objects)
     
     
+    
+    
+    void parking()
+    {
+        vehicle.enteringTheGarage();
+    }
+    
+    bool parkedInHere()
+    {
+        return vehicle.isItCurrentlyInGarage();
+        
+    }
+    
+    
+    bool isPassValid()
+    {
+        if(pass.isItExpired() == true)
+        {
+            return false;
+        }
+        
+        if(pass.isItExpired() == false)
+        {
+            return true;
+        }
+    }
+    
+    char typeOfCustomer()
+    {
+        return pass.getParkingPassType();
+    }
+    
+    void defineTypeOfCustomer(char type)
+    {
+        pass.setParkingPassType(type);
+    }
+    
+    int getReservedSpot()
+    {
+        return pass.getParkingSpot();
+    }
     
     
     

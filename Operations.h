@@ -221,6 +221,32 @@ public:
         totalRevenueGeneratedFromDayPasses+=premiumPassPrice;
     }
     
+    void displayRevenueAnalytics()
+    {
+        cout<<"Total revenue generated: $"<<getTotalRevenueGenerated()<<endl;
+        cout<<"Total revenue generated from premium pass sales: $"<<getTotalRevenueGeneratedFromPremiumPasses()<<endl;
+        cout<<"Total revenue generated from basic pass sales: $"<<getTotalRevenueGeneratedFromBasicPasses()<<endl;
+        cout<<"Total revenue generated from day pass sales: $"<<getTotalRevenueGeneratedFromDayPasses()<<endl<<endl;
+    }
+    
+    void displayPassCounts()
+    {
+        cout<<"Total passes left: "<<getTotalPassesLeft()<<endl;
+        cout<<"Total premium passes left: "<<getTotalPremiumPassesLeft()<<endl;
+        cout<<"Total basic passes left: "<<getTotalBasicPassesLeft()<<endl;
+        cout<<"Total day passes left: "<<getTotalDayPassesLeft()<<endl<<endl;
+    }
+    
+    void displayParkingPassPrices()
+    {
+        cout<<"Price for a premium pass: $"<<getPremiumPassPrice()<<endl;
+        
+        cout<<"Price for a basic pass: $"<<getBasicPassPrice()<<endl;
+        
+        cout<<"Price for a day pass: $"<<getDayPassPrice()<<endl<<endl;
+        
+        
+    }
     
     
     

@@ -24,6 +24,34 @@ public:
         
     }
     
+    
+    Customer(string fName, string lName, string pNumber, ParkingPass pass, Vehicle Vehicle)
+    {
+        firstName = fName;
+        lastName = lName;
+        phoneNumber = pNumber;
+        
+    }
+    
+    Customer(string fName, string lName, string pNumber, char desiredPassType, int desiredParkingSpot, string desiredVehicleYear, string desiredVehicleMake, string desiredVehicleModel, string desiredVehiclePlateNumber)
+    {
+        firstName = fName;
+        lastName = lName;
+        phoneNumber = pNumber;
+    
+        
+        pass.setParkingPassData(desiredPassType);
+        pass.setParkingPassData(desiredPassType, desiredParkingSpot);
+        
+        vehicle.setYear(desiredVehicleYear);
+        vehicle.setMake(desiredVehicleMake);
+        vehicle.setModel(desiredVehicleModel);
+        vehicle.setPlateNumber(desiredVehiclePlateNumber);
+
+        
+        
+    }
+    
     //Basic relevant customer-related functions (getters and setters for those respective variables)
     string getFirstName()
     {
@@ -104,10 +132,18 @@ public:
     
     
     
-    void parking()
+    void enteringTheGarage()
     {
-        vehicle.enteringTheGarage();
+        vehicle.parkingInParkingSpot();
     }
+    
+    void leavingTheGarage()
+    {
+        vehicle.leavingTheParkingSpot();
+    }
+    
+    
+    
     
     bool parkedInHere()
     {

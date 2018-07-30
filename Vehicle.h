@@ -80,11 +80,15 @@ public:
         return currentlyInGarage;
     }
     
-    void enteringTheGarage()
+    void parkingInParkingSpot()
     {
         currentlyInGarage = true;
     }
     
+    void leavingTheParkingSpot()
+    {
+        currentlyInGarage = false;
+    }
     
     
     

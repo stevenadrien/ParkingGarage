@@ -20,8 +20,7 @@ public:
     
     Vehicle()
     {
-        
-        
+        currentlyInGarage = false;
     }
     
     
@@ -76,12 +75,12 @@ public:
     }
     
     
-    bool isItCurrentlyInGarage
+    bool isItCurrentlyInGarage()
     {
         return currentlyInGarage;
     }
     
-    void enteringTheGarage
+    void enteringTheGarage()
     {
         currentlyInGarage = true;
     }

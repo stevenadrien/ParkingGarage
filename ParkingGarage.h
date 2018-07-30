@@ -204,27 +204,27 @@ public:
         
     }
     
-    void parkACar(int id)
+    void parkACar(int customerID)
     {
-        if(customers[id].isPassValid() == true)
+        if(customers[customerID].isPassValid() == true)
         {
-            if(customers[id].parkedInHere() == false)
+            if(customers[customerID].parkedInHere() == false)
             {
-                customers[id].parking();
-                cout<<"Customer #" + to_string(id) + " " + customers[id].getCustomerName() + " has entered the garage!"<<endl;
-                operations.aCarHasEnteredInGarage();
+                customers[customerID].enteringTheGarage();
+                cout<<"Customer #" + to_string(customerID) + " " + customers[customerID].getCustomerName() + " has entered the garage!"<<endl;
+                operations.aCarHasEnteredTheGarage();
             }
             
             else
             {
-                cout<<"Customer #" + to_string(id) + " " + customers[id].getCustomerName() + " is..already in the garage..."<<endl;
+                cout<<"Customer #" + to_string(customerID) + " " + customers[customerID].getCustomerName() + " is..already in the garage..."<<endl;
                 cout<<"Someone may have forged their credentials and attempting to access the parking garage illegally"<<endl;
             }
         }
         
         else
         {
-            cout<<"Customer #" + to_string(id) + " " + customers[id].getCustomerName() + " no longer has a valid parking pass and, thus, is no longer authorized to enter the parking garage."<<endl;
+            cout<<"Customer #" + to_string(customerID) + " " + customers[customerID].getCustomerName() + " no longer has a valid parking pass and, thus, is no longer authorized to enter the parking garage."<<endl;
             
             int choice;
             
@@ -238,10 +238,48 @@ public:
             
             if(choice == 1)
             {
-                renewParkingPass(id);
+                renewParkingPass(customerID);
             }
         }
     }
+    
+    
+    void unParkACar(int customerID)
+    {
+        if(customers[customerID].parkedInHere() == true)
+        {
+            customers[customerID].leavingTheGarage();
+            operations.aCarHasExitedTheGarage();
+            
+            if(customers[customerID].isPassValid() == false)
+            {
+                int choice;
+                cout<<"Oh, by the way.  Customer #" + to_string(customerID) + " " + customers[customerID].getCustomerName() + "'s pass has expired.  They will not be able to re-enter the parking garage once they have exited."<<endl;
+                cout<<"Would they like to renew their parking pass now?  Enter 1 for yes or 0 for no: "<<endl;
+                cin>>choice;
+            
+                if(choice == 1)
+                {
+                    renewParkingPass(customerID);
+                }
+            
+                if(choice == 0)
+                {
+                    return;
+                }
+            }
+        }
+
+        else
+        {
+            cout<<"Error. This customer is not currently parked in here..Maybe you meant someone else??"<<endl;
+        }
+    }
+        
+        
+        
+        
+        
     
     
     
@@ -276,6 +314,9 @@ public:
         
     }
     
+    
+    
+    //Strictly analytics related st00f (displaying information)
     
     void showCurrentPassPrices()
     {

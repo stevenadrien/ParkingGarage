@@ -5,6 +5,7 @@
 #include "Customer.h"
 #include "Employee.h"
 #include "Operations.h"
+#include <string>
 
 
 
@@ -58,6 +59,10 @@ public:
         if(customerCount != 300)
         {
             customers[customerCount].createNewCustomer();
+            
+            setParkingPassInfo();
+            
+            
 
 
             if(customers[customerCount].getParkingPassType() == 'p')
@@ -95,8 +100,101 @@ public:
             return;
         }
         
-            
         
+    }
+    
+    void setParkingPassInfo()
+    {
+        while(bool flag = false)
+        {
+            char type;
+            cout<<"Enter parking pass type (p for premium, b for basic, d for day pass): "<<endl;
+            cin>>type;
+        
+            customers[customerCount].defineTypeOfCustomer(type);
+        
+        
+            if(type == 'p')
+            {
+                if(operations.getTotalPassesLeft() && operations.getTotalPremiumPassesLeft() != 0)
+                {
+                    bool valid = false;
+                    do {
+                            int spot;
+                    
+                            cout<<"Enter customer's reserved parking spot number (from 1-100): "<<endl;
+                            cin>>spot;
+                    
+                            bool alreadyFilled;
+                            int x;
+                    
+                            //Checks to see if that parking spot is not filled already
+                            while(x != 300 )
+                            {
+                                if(customers[x].getReservedSpot() == spot)
+                                {
+                                    alreadyFilled = true;
+                                }
+                            }
+                        
+                        
+                            if(alreadyFilled == true)
+                            {
+                                cout<<"Sorry, that parking spot is already reserved.  Please select another."<<endl;
+                                //display available parking spots
+                                valid = false;
+                            }
+                        
+                            if(alreadyFilled == false)
+                            {
+                                cout<<"Premium pass issued"<<endl;
+                                valid = true;
+                            }
+                        
+                    } while(valid == false);
+                        
+                            flag = true;
+                }
+            
+                else
+                {
+                    cout<<"No more premium passes available.  Please select another parking pass tier."<<endl;
+                    flag = false;
+                }
+            }
+            
+            if(type == 'b')
+            {
+                if(operations.getTotalPassesLeft() && operations.getTotalBasicPassesLeft() != 0)
+                {
+                    cout<<"Basic pass issued"<<endl;
+                    flag = true;
+                }
+                
+                else
+                {
+                    cout<<"No more basic passes available.  Please select another parking pass tier."<<endl;
+                    flag = false;
+                }
+                
+                
+            }
+            
+            if(type == 'd')
+            {
+                if(operations.getTotalPassesLeft() && operations.getTotalDayPassesLeft() != 0)
+                {
+                    cout<<"Day pass issued"<<endl;
+                    flag = true;
+                }
+                
+                else
+                {
+                    cout<<"No more day passes available.  Please select another parking pass tier."<<endl;
+                    flag = false;
+                }
+            }
+        }
     }
     
     void renewParkingPass(int customerID)
@@ -108,25 +206,25 @@ public:
     
     void parkACar(int id)
     {
-        if(customers[id].isPassValid == true)
+        if(customers[id].isPassValid() == true)
         {
-            if(customers[id].isItCurrentlyInTheGarage == false)
+            if(customers[id].parkedInHere() == false)
             {
-                customers[id].enteringTheGarage;
-                cout<<"Customer #" + id + " " + customers[id].getName() + " has entered the garage!"<<endl;
+                customers[id].parking();
+                cout<<"Customer #" + to_string(id) + " " + customers[id].getCustomerName() + " has entered the garage!"<<endl;
                 operations.aCarHasEnteredInGarage();
             }
             
             else
             {
-                cout<<"Customer #" + id + " " + customers[id].getName() + " is..already in the garage..."<<endl;
+                cout<<"Customer #" + to_string(id) + " " + customers[id].getCustomerName() + " is..already in the garage..."<<endl;
                 cout<<"Someone may have forged their credentials and attempting to access the parking garage illegally"<<endl;
             }
         }
         
         else
         {
-            cout<<"Customer #" + id + " " + customers[id].getName() + " no longer has a valid parking pass and, thus, is no longer authorized to enter the parking garage."<<endl;
+            cout<<"Customer #" + to_string(id) + " " + customers[id].getCustomerName() + " no longer has a valid parking pass and, thus, is no longer authorized to enter the parking garage."<<endl;
             
             int choice;
             
@@ -142,44 +240,47 @@ public:
             {
                 renewParkingPass(id);
             }
-            
-        
+        }
     }
     
     
-    void getParkingPassPrices()
-    {
-        cout<<"Price for a premium pass: $"<<premiumPassPrice<<endl;
-        
-        cout<<"Price for a basic pass: $"<<basicPassPrice<<endl;
-        
-        cout<<"Price for a day pass: $"<<dayPassPrice<<endl<<endl;
-        
-        
-    }
+    
     
     void setParkingPassPrices()
     {
         cout<<"****PARKING PRICES SETTINGS****"<<endl<<endl;
         
+        int newPremium;
+        int newBasic;
+        int newDay;
+        
+        
         cout<<"Enter the desired price for a premium pass"<<endl;
-        cin>>operations.setPremiumPassPrice(int newPremium);
+        cin>>newPremium;
+        operations.setPremiumPassPrice(newPremium);
         
         cout<<"Enter the desired price for a basic pass"<<endl;
-        cin>>operations.setBasicPassPrice(int newBasic);
+        cin>>newBasic;
+        operations.setBasicPassPrice(newBasic);
 
         
         cout<<"Enter the desired price for a day pass"<<endl;
-        cin>>operations.setDayPassPrice(int newDay);
+        cin>>newDay;
+        operations.setDayPassPrice(newDay);
 
         
         cout<<"Parking prices have been set.  Here are the new prices:"<<endl;
         
-        getParkingPassPrices();
+        operations.displayParkingPassPrices();
         
         
     }
     
+    
+    void showCurrentPassPrices()
+    {
+        operations.displayParkingPassPrices();
+    }
    
     
     
@@ -188,18 +289,12 @@ public:
     {
         cout<<"****BUSINESS ANALYTICS****"<<endl<<endl;
         
-        getParkingPassPrices();
+        operations.displayParkingPassPrices();
         
-        cout<<"Total revenue generated: $"<<totalRevenueGenerated<<endl;
-        cout<<"Total revenue generated from premium pass sales: $"<<totalRevenueGeneratedFromPremium<<endl;
-        cout<<"Total revenue generated from basic pass sales: $"<<totalRevenueGeneratedFromBasic<<endl;
-        cout<<"Total revenue generated from day pass sales: $"<<totalRevenueGeneratedFromDay<<endl<<endl;
-    
+        operations.displayRevenueAnalytics();
         
-        cout<<"Total passes left: "<<totalPassesLeft<<endl;
-        cout<<"Total premium passes left: "<<totalPremiumPassesLeft<<endl;
-        cout<<"Total basic passes left: "<<totalBasicPassesLeft<<endl;
-        cout<<"Total day passes left: "<<totalDayPassesLeft<<endl<<endl;
+        operations.displayPassCounts();
+
         
 
         

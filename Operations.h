@@ -176,12 +176,12 @@ public:
     
     
  
-    void aCarHasEnteredInGarage()
+    void aCarHasEnteredTheGarage()
     {
         totalCarsCurrentlyInGarage++;
     }
     
-    void aCarHasExitedInGarage()
+    void aCarHasExitedTheGarage()
     {
         totalCarsCurrentlyInGarage--;
     }

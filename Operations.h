@@ -2,8 +2,8 @@
 //  Operations.h
 //  ParkingGarage
 //
-//  Created by Steven on 26/07/18.
-//  Copyright © 2018 Steven. All rights reserved.
+//  Created by Steven Ouandji on 26/07/18.
+//  Copyright © 2018 Steven Ouandji. All rights reserved.
 //
 
 #ifndef Operations_h

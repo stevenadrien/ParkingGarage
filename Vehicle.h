@@ -91,7 +91,7 @@ public:
     }
     
     
-    
+    //Related to actual program functionality
     void inputVehicleInfo()
     {
         cout<<"Enter the year of the customer's vehicle:"<<endl;
@@ -110,6 +110,29 @@ public:
     
     
 
+    //Related to edit customer functions
+    
+    void editCustomerVehicleYear()
+    {
+        cout<<"Enter the year of the customer's vehicle:"<<endl;
+        cin>>year;
+    }
+    
+    void editCustomerVehicleMake()
+    {
+        cout<<"Enter the make of the customer's vehicle:"<<endl;
+        cin>>make;
+    }
+    void editCustomerVehicleModel()
+    {
+        cout<<"Enter the model of the customer's vehicle:"<<endl;
+        cin>>model;
+    }
+    void editCustomerVehiclePlateNumber()
+    {
+        cout<<"Enter the plate number of the customer's vehicle:"<<endl;
+        cin>>plateNumber;
+    }
     
     
     

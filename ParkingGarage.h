@@ -3,7 +3,7 @@
 #define ParkingGarage_h
 
 #include "Customer.h"
-#include "Employee.h"
+#include "Security.h"
 #include "Operations.h"
 #include <string>
 
@@ -18,7 +18,7 @@ class ParkingGarage
 private:
     Customer customers[300];
     int customerCount;
-    Employee admins;
+    Security admins;
     Operations operations;
     
 
@@ -54,13 +54,21 @@ public:
     //"Un-park" a car from the garage; decrement current car park
     //Bizzz analytics
     //Set parking pass prices
+    
+    
+    void addACustomer(Customer customer)
+    {
+        addACustomer();
+    }
+    
+    
     void addACustomer()
     {
         if(customerCount != 300)
         {
             customers[customerCount].createNewCustomer();
             
-            setParkingPassInfo();
+            setParkingPassInfo(customerCount);
             
             
 
@@ -103,7 +111,82 @@ public:
         
     }
     
-    void setParkingPassInfo()
+    void editCustomerInfo(int customerID)
+    {
+        int userChoice;
+        
+        do
+        {
+            cout<<"Here is Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + "'s information:"<<endl;
+            
+            cout<<"First Name: "<<customers[customerID].getFirstName()<<endl;
+            cout<<"Last Name: "<<customers[customerID].getLastName()<<endl;
+            cout<<"Phone Number: "<<customers[customerID].getPhoneNumber()<<endl;
+            
+            cout<<"Year Of Vehicle: "<<customers[customerID].getVehicleYear()<<endl;
+            cout<<"Make Of Vehicle: "<<customers[customerID].getVehicleMake()<<endl;
+            cout<<"Model Of Vehicle: "<<customers[customerID].getVehicleModel()<<endl;
+            cout<<"Plate Number Of Vehicle: "<<customers[customerID].getVehiclePlateNumber()<<endl<<endl;
+            
+        
+            cout<<"What would you like to do: "<<endl;
+            cout<<"1. Edit Customer's First Name"<<endl;
+            cout<<"2. Edit Customer's Last Name"<<endl;
+            cout<<"3. Edit Customer's Phone Number"<<endl;
+            cout<<"4. Edit Customer's Vehicle Year"<<endl;
+            cout<<"5. Edit Customer's Vehicle Make"<<endl;
+            cout<<"6. Edit Customer's Vehicle Model"<<endl;
+            cout<<"7. Edit Customer's Vehicle Plate Number"<<endl;
+            cout<<"8.  Exit Customer Information Wizard"<<endl;
+            
+            cin>>userChoice;
+            
+            switch(userChoice)
+            {
+                case 1:
+                    customers[customerID].editCustomerFirstName();
+                    break;
+                    
+                case 2:
+                    customers[customerID].editCustomerLastName();
+                    break;
+                    
+                case 3:
+                    customers[customerID].editCustomerPhoneNumber();
+                    break;
+                
+                case 4:
+                    customers[customerID].editCustomerVehicleYear();
+                    break;
+                    
+                case 5:
+                    customers[customerID].editCustomerVehicleMake();
+                    break;
+                    
+                case 6:
+                    customers[customerID].editCustomerVehicleModel();
+                    break;
+                    
+                case 7:
+                    customers[customerID].editCustomerVehiclePlateNumber();
+                    break;
+            }
+            
+            
+            
+        } while (userChoice != 8);
+        
+    
+        
+    }
+    
+    
+    
+    
+    
+    //This is for the parking pass stuff; I broke it up since premium gets quite elaborate, while basic and day passes
+    //are pretty simple
+    void setParkingPassInfo(int customerID)
     {
         while(bool flag = false)
         {
@@ -111,7 +194,7 @@ public:
             cout<<"Enter parking pass type (p for premium, b for basic, d for day pass): "<<endl;
             cin>>type;
         
-            customers[customerCount].defineTypeOfCustomer(type);
+            customers[customerID].defineTypeOfCustomer(type);
         
         
             if(type == 'p')
@@ -203,6 +286,13 @@ public:
         
         
     }
+    
+    void parkACar(Customer customer)
+    {
+        parkACar(customer);
+        
+    }
+    
     
     void parkACar(int customerID)
     {
@@ -338,6 +428,14 @@ public:
 
         
 
+        
+    }
+    
+    void displayOperationsInformation()
+    {
+        cout<<"****OPERATIONS****"<<endl;
+        
+        operations.showOperationsAnalytics();
         
     }
     

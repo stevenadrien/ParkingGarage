@@ -4,6 +4,7 @@
 #include "Vehicle.h"
 #include "ParkingPass.h"
 #include "Security.h"
+#include <string>
 
 
 
@@ -64,7 +65,7 @@ public:
     }
     
     
-    string getlastName()
+    string getLastName()
     {
         return lastName;
     }
@@ -75,12 +76,12 @@ public:
     }
     
     
-    string getphoneNumber()
+    string getPhoneNumber()
     {
         return phoneNumber;
     }
     
-    void setphoneNumber(string pNumber)
+    void setPhoneNumber(string pNumber)
     {
         phoneNumber = pNumber;
     }
@@ -93,15 +94,50 @@ public:
     }
     
     
-    //Nice-to-have functions (related to piecing data together)
+    //Customer info retrieval functions
+    
+    
     string getCustomerName()
     {
         return firstName + " " + lastName;
     }
     
+    
     string getCustomerVehicle()
     {
         return vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel();
+    }
+    
+    string getVehicleYear()
+    {
+        return vehicle.getYear();
+    }
+    
+    string getVehicleMake()
+    {
+        return vehicle.getMake();
+    }
+    
+    string getVehicleModel()
+    {
+        return vehicle.getModel();
+    }
+    
+    string getVehiclePlateNumber()
+    {
+        return vehicle.getPlateNumber();
+    }
+    
+    
+    
+    void displayCustomerParkingPassInfo()
+    {
+        cout<<"Parking Pass Type: " + pass.getParkingPassType()<<endl;
+        if(pass.getParkingPassType() == 'p')
+        {
+            cout<<"Parking Pass Spot Number: " + pass.getParkingSpot()<<endl;
+        }
+        
     }
     
     
@@ -124,6 +160,50 @@ public:
         vehicle.inputVehicleInfo();
         
     }
+    
+    //  EDITING CUSTOMER-INFORMATION-RELATED functions
+    
+    
+    void editCustomerFirstName()
+    {
+        cout<<"Enter customer's first name:"<<endl;
+        cin>>firstName;
+    }
+    
+    void editCustomerLastName()
+    {
+        cout<<"Enter customer's last name:"<<endl;
+        cin>>lastName;
+    }
+    
+    void editCustomerPhoneNumber()
+    {
+        cout<<"Enter customer's phone number:"<<endl;
+        cin>>phoneNumber;
+    }
+    
+    void editCustomerVehicleYear()
+    {
+        vehicle.editCustomerVehicleYear();
+    }
+    
+    void editCustomerVehicleMake()
+    {
+        vehicle.editCustomerVehicleMake();
+    }
+    
+    void editCustomerVehicleModel()
+    {
+        vehicle.editCustomerVehicleModel();
+
+    }
+    
+    void editCustomerVehiclePlateNumber()
+    {
+        vehicle.editCustomerVehiclePlateNumber();
+
+    }
+    
     
     
     
@@ -164,6 +244,7 @@ public:
             return true;
         }
     }
+     
     
     char typeOfCustomer()
     {

@@ -187,6 +187,10 @@ public:
     }
     
     
+    void showOperationsAnalytics()
+    {
+        cout<<"Total cars currently parked in garage: " << getTotalCarsCurrentlyInGarage();
+    }
     
     
     

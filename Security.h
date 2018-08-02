@@ -1,44 +1,36 @@
-//
-//  Security.h
-//  ParkingGarage
-//
-//  Created by Steven on 17/07/18.
-//  Copyright © 2018 Steven. All rights reserved.
-//
-
 #ifndef Security_h
 #define Security_h
 
 class Security
 {
 private:
+    string login = "superman";
+    string name = "Harry";
     
-    int customerID;
+public:
+    
+    string getLogin()
+    {
+        return login;
+    }
+    
+    void setLogin(string log)
+    {
+        login = log;
+    }
+   
+    string getName()
+    {
+        return name;
+    }
+    
+    void setName(string nm)
+    {
+        name = nm;
+    }
+};
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
-
-
 
 
 

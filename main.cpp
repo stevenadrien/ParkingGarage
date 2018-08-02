@@ -3,14 +3,15 @@ using namespace std;
 
 #include <iostream>
 #include "ParkingGarage.h"
+#include <string>
 
 
 //fills garage- making sure;;
 //park car (parked in the garage);;;parkACar(int customerID)
 //unpark car (left garage);;;unParkACar(int customerID)
 //edit customer info
-//
-//remove vehicle
+//renew parking pass
+//update pass prices
 //
 
 int main()
@@ -71,6 +72,25 @@ int main()
     } while(userChoice != -1);
     
     
+    
+    string fName, lName, pNumber;
+    parkingGarage.addACustomer();
+    
+    Customer customer1;
+    
+    customer1.setFirstName("harry");
+    customer1.setLastName("potter");
+    customer1.setPhoneNumber("4052491328");
+    customer1.setParkingPassType('p');
+    
+    
+    parkingGarage.parkACar(customer1);
+    
+    parkingGarage.displayOperationsInformation();
+    
+    
+    
+    parkingGarage.addACustomer(customer1);
     
     
     

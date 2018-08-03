@@ -122,6 +122,14 @@ public:
     }
 
     
+    void renewParkingPass()
+    {
+        //Reset deh clock
+        start = std::chrono::system_clock::now();
+        
+    }
+    
+    
     
 };
 

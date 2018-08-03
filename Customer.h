@@ -142,9 +142,9 @@ public:
         return pass.getDuration();
     }
     
-    void setDuration(double spot)
+    void setDuration(double duration)
     {
-        pass.setDuration(spot);
+        pass.setDuration(duration);
     }
     
     
@@ -273,7 +273,13 @@ public:
         return false;
 
     }
-     
+    
+    void renewParkingPass()
+    {
+        pass.renewParkingPass();
+        
+    }
+    
     
    
     

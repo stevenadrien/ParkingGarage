@@ -6,6 +6,8 @@
 #include "Security.h"
 #include "Operations.h"
 #include <string>
+#include <chrono>
+
 
 
 
@@ -20,6 +22,8 @@ private:
     int customerCount;
     Security admins;
     Operations operations;
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+
     
 
     
@@ -31,6 +35,8 @@ public:
     ParkingGarage()
     {
         customerCount = 0;
+        start = std::chrono::system_clock::now();
+
         
     }
     
@@ -194,7 +200,7 @@ public:
             cout<<"Enter parking pass type (p for premium, b for basic, d for day pass): "<<endl;
             cin>>type;
         
-            customers[customerID].defineTypeOfCustomer(type);
+            customers[customerID].setParkingPassType(type);
         
         
             if(type == 'p')
@@ -204,6 +210,8 @@ public:
                     bool valid = false;
                     do {
                             int spot;
+                        
+                        bool parkingSpots[100];
                     
                             cout<<"Enter customer's reserved parking spot number (from 1-100): "<<endl;
                             cin>>spot;
@@ -212,11 +220,19 @@ public:
                             int x;
                     
                             //Checks to see if that parking spot is not filled already
+                            //Goes through all customers and sees if no one already has that number set as their spot
+                            //Also keeps tally of taken spot numbers
                             while(x != 300 )
                             {
-                                if(customers[x].getReservedSpot() == spot)
+                                if(customers[x].getParkingSpot() == spot)
                                 {
                                     alreadyFilled = true;
+                                    
+                                    if(customers[x].getParkingPassType() == 'p')
+                                    {
+                                        parkingSpots[customers[x].getParkingSpot()] = true;
+                                    }
+                                    
                                 }
                             }
                         
@@ -225,6 +241,18 @@ public:
                             {
                                 cout<<"Sorry, that parking spot is already reserved.  Please select another."<<endl;
                                 //display available parking spots
+                                
+                                cout<<"Here's a list of available parking spots: "<<endl;
+                                
+                                while(x != 100)
+                                {
+                                    if(parkingSpots[x] == false)
+                                    {
+                                        cout<<x<< " ";
+                                    }
+                                }
+                                        
+                             
                                 valid = false;
                             }
                         
@@ -296,7 +324,7 @@ public:
     
     void parkACar(int customerID)
     {
-        if(customers[customerID].isPassValid() == true)
+        if(customers[customerID].isItExpired() == true)
         {
             if(customers[customerID].parkedInHere() == false)
             {
@@ -341,7 +369,7 @@ public:
             customers[customerID].leavingTheGarage();
             operations.aCarHasExitedTheGarage();
             
-            if(customers[customerID].isPassValid() == false)
+            if(customers[customerID].isItExpired() == false)
             {
                 int choice;
                 cout<<"Oh, by the way.  Customer #" + to_string(customerID) + " " + customers[customerID].getCustomerName() + "'s pass has expired.  They will not be able to re-enter the parking garage once they have exited."<<endl;

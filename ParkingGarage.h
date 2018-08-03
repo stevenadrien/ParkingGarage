@@ -219,7 +219,7 @@ public:
                             cin>>spot;
                     
                             bool alreadyFilled;
-                            int x;
+                            int x = 0;
                     
                             //Checks to see if that parking spot is not filled already
                             //Goes through all customers and sees if no one already has that number set as their spot
@@ -317,13 +317,27 @@ public:
     
     void renewParkingPass(int customerID)
     {
+        char parkingPassType;
+        
         if(customers[customerID].isItExpired() == true)
         {
+            parkingPassType = customers[customerID].getParkingPassType();
             
             
             
+            //I'm calling that function here because we need to ensure that we can even issue out that type of parking
+            //pass again, and then set the respective details for that parking pass.
+            
+            setParkingPassInfo(customerID);
+            
+            
+            customers[customerID].renewParkingPass();
         }
-            
+        
+        if(customers[customerID].isItExpired() == false)
+        {
+            cout<<"No need to renew your parking pass...it's still valid!"<<endl;
+        }
         
         
     }

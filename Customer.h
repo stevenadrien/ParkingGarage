@@ -5,6 +5,7 @@
 #include "ParkingPass.h"
 #include "Security.h"
 #include <string>
+#include "Operations.h"
 
 
 
@@ -22,6 +23,7 @@ public:
     
     Customer()
     {
+        
         
     }
     
@@ -191,6 +193,13 @@ public:
         vehicle.inputVehicleInfo();
         
     }
+    
+    
+    
+    
+    
+    
+    
     
     //  EDITING CUSTOMER-INFORMATION-RELATED functions
     

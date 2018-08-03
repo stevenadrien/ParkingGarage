@@ -53,7 +53,7 @@ public:
         
     }
     
-    //Basic relevant customer-related functions (getters and setters for those respective variables)
+    //Basic relevant customer-related functions (getters and setters for this class's  variables)
     string getFirstName()
     {
         return firstName;
@@ -87,14 +87,12 @@ public:
     }
     
     
-    char getParkingPassType()
-    {
-        return pass.getParkingPassType();
-        
-    }
+
     
     
-    //Customer info retrieval functions
+    
+    
+    //Customer info retrieval functions (primarily predicatd to Vehicle and ParkingPass objects)
     
     
     string getCustomerName()
@@ -126,6 +124,39 @@ public:
     string getVehiclePlateNumber()
     {
         return vehicle.getPlateNumber();
+    }
+    
+    
+    char getParkingPassType()
+    {
+        return pass.getParkingPassType();
+    }
+    
+    void setParkingPassType(char type)
+    {
+        pass.setParkingPassType(type);
+    }
+    
+    double getDuration()
+    {
+        return pass.getDuration();
+    }
+    
+    void setDuration(double spot)
+    {
+        pass.setDuration(spot);
+    }
+    
+    
+    
+    int getParkingSpot()
+    {
+        return pass.getParkingSpot();
+    }
+    
+    void setParkingSpot(int spot)
+    {
+        pass.setParkingSpot(spot);
     }
     
     
@@ -232,34 +263,19 @@ public:
     }
     
     
-    bool isPassValid()
+    bool isItExpired()
     {
-        if(pass.isItExpired() == true)
-        {
-            return false;
-        }
-        
-        if(pass.isItExpired() == false)
+       if(pass.isItExpired() == false)
         {
             return true;
         }
+        
+        return false;
+
     }
      
     
-    char typeOfCustomer()
-    {
-        return pass.getParkingPassType();
-    }
-    
-    void defineTypeOfCustomer(char type)
-    {
-        pass.setParkingPassType(type);
-    }
-    
-    int getReservedSpot()
-    {
-        return pass.getParkingSpot();
-    }
+   
     
     
     

@@ -4,6 +4,10 @@
 #include "ParkingGarage.h"
 #include <ctime>
 #include "Operations.h"
+#include <time.h>
+#include <chrono>
+
+
 
 
 
@@ -14,12 +18,15 @@ class ParkingPass
 private:
     char parkingPassType;
     int parkingSpot;
-    string duration;
+    double duration;
+    clock_t timer;
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+
    // Date dateCreated;
    // Date expirationDate;
     
     
-    
+
     
 
     
@@ -28,7 +35,7 @@ public:
     
     ParkingPass()
     {
-
+        start = std::chrono::system_clock::now();
     }
     
     char getParkingPassType()
@@ -51,12 +58,12 @@ public:
         parkingSpot = spotNumber;
     }
     
-    string getDuration()
+    double getDuration()
     {
         return duration;
     }
     
-    void setDuration(string dur)
+    void setDuration(double dur)
     {
         duration = dur;
     }
@@ -83,18 +90,42 @@ public:
     //essentially ties into some higher level function in a "parent" class
 
     
-   /* bool isItExpired()
+    
+    
+    /*
+     std::chrono::time_point<std::chrono::system_clock> start, end;
+     
+     start = std::chrono::system_clock::now();
+     std::cout << "f(42) = " << fibonacci(42) << '\n';
+     end = std::chrono::system_clock::now();
+     
+     std::chrono::duration<double> elapsed_seconds = end - start;
+     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+     
+     std::cout << "finished computation at " << std::ctime(&end_time)
+     << "elapsed time: " << elapsed_seconds.count() << "s\n";
+     */
+    
+    bool isItExpired()
     {
-        if(getCurrentDate == expirationDate || getCurrentDate > expirationDate)
+        end = std::chrono::system_clock::now();
+    
+        std::chrono::duration<double> elapsed_seconds = end - start;
+     
+        if(elapsed_seconds.count() == duration || elapsed_seconds.count() > duration)
         {
             return true;
         }
         
+        return false;
+        
     }
-    */
+
     
     
 };
+
+
 
 
 #endif /* ParkingPass_h */

@@ -36,7 +36,12 @@ private:
     int totalRevenueGeneratedFromDayPasses;
     
     
-    int totalCarsCurrentlyInGarage;
+    int totalCarsCurrentlyInTheGarage;
+    
+    
+    int totalCurrentPremiumPassCustomersInTheGarage;
+    int totalCurrentBasicPassCustomersInTheGarage;
+    int totalCurrentDayPassCustomersInTheGarage;
 
 public:
     //Default constructor:
@@ -62,7 +67,12 @@ public:
         totalRevenueGeneratedFromDayPasses = 0;
         
         
-        totalCarsCurrentlyInGarage = 0;
+        totalCarsCurrentlyInTheGarage = 0;
+        totalCurrentPremiumPassCustomersInTheGarage = 0;
+        totalCurrentBasicPassCustomersInTheGarage = 0;
+        totalCurrentDayPassCustomersInTheGarage = 0;
+        
+        
     }
     
     
@@ -171,58 +181,82 @@ public:
     //Garage-related functions// state of the garage
     int getTotalCarsCurrentlyInGarage()
     {
-        return totalCarsCurrentlyInGarage;
+        return totalCarsCurrentlyInTheGarage;
     }
-    
-    
  
     void aCarHasEnteredTheGarage()
     {
-        totalCarsCurrentlyInGarage++;
+        totalCarsCurrentlyInTheGarage++;
     }
     
     void aCarHasExitedTheGarage()
     {
-        totalCarsCurrentlyInGarage--;
+        totalCarsCurrentlyInTheGarage--;
     }
     
     
+    
+    int getTotalPremiumPassCustomersCurrentlyInTheGarage()
+    {
+        return totalCurrentPremiumPassCustomersInTheGarage;
+    }
+    
+    void aPremiumPassCustomerHasEnteredTheGarage()
+    {
+        totalCurrentPremiumPassCustomersInTheGarage++;
+    }
+    
+    void aPremiumPassCustomerHasExitedTheGarage()
+    {
+        totalCurrentPremiumPassCustomersInTheGarage--;
+    }
+    
+    
+    
+    int getTotalBasicPassCustomersCurrentlyInTheGarage()
+    {
+        return totalCurrentBasicPassCustomersInTheGarage;
+    }
+    
+    void aBasicPassCustomerHasEnteredTheGarage()
+    {
+        totalCurrentBasicPassCustomersInTheGarage++;
+    }
+    
+    void aBasicPassCustomerHasExitedTheGarage()
+    {
+        totalCurrentBasicPassCustomersInTheGarage--;
+    }
+    
+    
+    int getTotalDayPassCustomersCurrentlyInTheGarage()
+    {
+        return totalCurrentDayPassCustomersInTheGarage;
+    }
+    
+    void aDayPassCustomerHasEnteredTheGarage()
+    {
+        totalCurrentDayPassCustomersInTheGarage++;
+    }
+    
+    void aDayPassCustomerHasExitedTheGarage()
+    {
+        totalCurrentDayPassCustomersInTheGarage--;
+    }
+    
+    
+    
+    
+    
+    
+    
+    //Analytics related functions
     void showOperationsAnalytics()
     {
-        cout<<"Total cars currently parked in garage: " << getTotalCarsCurrentlyInGarage();
-    }
-    
-    
-    
-    
-    
-    
-    //Sales-related and operations related functions (dealing with revenue and pass counts)
-    void premiumPassIssued()
-    {
-        totalPassesLeft--;
-        totalPremiumPassesLeft--;
-        
-        totalRevenueGenerated+=premiumPassPrice;
-        totalRevenueGeneratedFromPremiumPasses+=premiumPassPrice;
-    }
-    
-    void basicPassIssued()
-    {
-        totalPassesLeft--;
-        totalBasicPassesLeft--;
-        
-        totalRevenueGenerated+=basicPassPrice;
-        totalRevenueGeneratedFromBasicPasses+=basicPassPrice;
-    }
-    
-    void dayPassIssued()
-    {
-        totalPassesLeft--;
-        totalDayPassesLeft--;
-        
-        totalRevenueGenerated+=dayPassPrice;
-        totalRevenueGeneratedFromDayPasses+=premiumPassPrice;
+        cout<<"Total cars currently parked in garage: " << getTotalCarsCurrentlyInGarage()<<endl;
+        cout<<"Total premium pass customers currently parked in the garage: "<<getTotalPremiumPassCustomersCurrentlyInTheGarage()<<endl;
+        cout<<"Total basic pass customers currently parked in the garage: "<<getTotalBasicPassCustomersCurrentlyInTheGarage()<<endl;
+        cout<<"Total day pass customers currently parked in the garage: "<<getTotalBasicPassCustomersCurrentlyInTheGarage()<<endl<<endl;
     }
     
     void displayRevenueAnalytics()
@@ -251,6 +285,41 @@ public:
         
         
     }
+    
+    
+    
+    
+    
+    
+    //State-of-sales-and-operations-related function (dealing with revenue and pass counts)
+    void premiumPassIssued()
+    {
+        totalPassesLeft--;
+        totalPremiumPassesLeft--;
+        
+        totalRevenueGenerated+=premiumPassPrice;
+        totalRevenueGeneratedFromPremiumPasses+=premiumPassPrice;
+    }
+    
+    void basicPassIssued()
+    {
+        totalPassesLeft--;
+        totalBasicPassesLeft--;
+        
+        totalRevenueGenerated+=basicPassPrice;
+        totalRevenueGeneratedFromBasicPasses+=basicPassPrice;
+    }
+    
+    void dayPassIssued()
+    {
+        totalPassesLeft--;
+        totalDayPassesLeft--;
+        
+        totalRevenueGenerated+=dayPassPrice;
+        totalRevenueGeneratedFromDayPasses+=premiumPassPrice;
+    }
+    
+
     
     
     

@@ -207,6 +207,8 @@ public:
             {
                 if(operations.getTotalPassesLeft() && operations.getTotalPremiumPassesLeft() != 0)
                 {
+                    customers[customerID].setDuration(50);
+                    
                     bool valid = false;
                     do {
                             int spot;
@@ -278,6 +280,9 @@ public:
             {
                 if(operations.getTotalPassesLeft() && operations.getTotalBasicPassesLeft() != 0)
                 {
+                    customers[customerID].setDuration(30);
+
+                    
                     cout<<"Basic pass issued"<<endl;
                     flag = true;
                 }
@@ -295,6 +300,8 @@ public:
             {
                 if(operations.getTotalPassesLeft() && operations.getTotalDayPassesLeft() != 0)
                 {
+                    customers[customerID].setDuration(15);
+
                     cout<<"Day pass issued"<<endl;
                     flag = true;
                 }
@@ -310,7 +317,13 @@ public:
     
     void renewParkingPass(int customerID)
     {
-        
+        if(customers[customerID].isItExpired() == true)
+        {
+            
+            
+            
+        }
+            
         
         
     }

@@ -73,12 +73,12 @@ public:
     //functions to do stuff manually (like passing parking pass data for testing purposes ;))
     void setParkingPassData(char parkingType)
     {
-        setParkingPassData(parkingType);
+        setParkingPassType(parkingType);
     }
     
     void setParkingPassData(char parkingType, int parkingSpot)
     {
-        setParkingPassData(parkingType);
+        setParkingPassType(parkingType);
         setParkingSpot(parkingSpot);
     }
     

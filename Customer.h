@@ -36,6 +36,7 @@ public:
         
     }
     
+    
     Customer(string fName, string lName, string pNumber, char desiredPassType, int desiredParkingSpot, string desiredVehicleYear, string desiredVehicleMake, string desiredVehicleModel, string desiredVehiclePlateNumber)
     {
         firstName = fName;

@@ -6,15 +6,11 @@ using namespace std;
 #include <string>
 
 
-//fills garage- making sure;;
-//park car (parked in the garage);;;parkACar(int customerID)
-//unpark car (left garage);;;unParkACar(int customerID)
-//edit customer info
-//renew parking pass
-//update pass prices
-//
 
-int main()
+
+
+
+void runTheProgram()
 {
     ParkingGarage parkingGarage;
     
@@ -31,12 +27,12 @@ int main()
     {
         cout<<"Login successful.  Welcome "<<parkingGarage.getAdminName()<<" :)"<<endl<<endl<<endl;
     }
-        
-        
+    
+    
     
     do
     {
-        cout << "Please type in your desired action. Type in -1 to logout and exit the program:"<<endl;
+        cout << "Please type in your desired action. Type in -1 to logout and exit the program:"<<endl<<endl;
         cout << "1. Park A Car"<<endl;
         cout << "2. Un-Park A Car"<<endl;
         cout << "3. Set Parking Pass Prices"<<endl;
@@ -48,32 +44,33 @@ int main()
         
         cin >> userChoice;
         int customerID;
-
         
-    switch(userChoice)
+        
+        switch(userChoice)
         {
-        
+                
             case 1:
                 cout<<"Please enter the customer ID of the person desiring to park their car: "<<endl;
                 cin>>customerID;
                 parkingGarage.parkACar(customerID);
                 break;
                 
-        
+                
             case 2:
                 cout<<"Please enter the customer ID of the person desiring to park their car: "<<endl;
                 cin>>customerID;
                 parkingGarage.unParkACar(customerID);
+                break;
                 
             case 3:
                 parkingGarage.setParkingPassPrices();
                 break;
-        
+                
                 
             case 4:
                 parkingGarage.displayOperationsAnalytics();
                 break;
- 
+                
                 
             case 5:
                 parkingGarage.displayBusinessAnalytics();
@@ -83,7 +80,7 @@ int main()
             case 6:
                 parkingGarage.addACustomer();
                 break;
-            
+                
                 
             case 7:
                 cout<<"Please enter the customer ID of the person desiring to renew their parking pass: "<<endl;
@@ -99,36 +96,41 @@ int main()
                 parkingGarage.editCustomerInfo(customerID);
                 
         }
-    
+        
         
     } while(userChoice != -1);
     
-    /*
-    
-    string fName, lName, pNumber;
-    parkingGarage.addACustomer();
-    
-    Customer customer1;
-    
-    customer1.setFirstName("harry");
-    customer1.setLastName("potter");
-    customer1.setPhoneNumber("4052491328");
-    customer1.setParkingPassType('p');
-    
-    
-    parkingGarage.parkACar(customer1);
-    
-    parkingGarage.displayOperationsAnalytics();
-    
-    
-    
-    parkingGarage.addACustomer(customer1);
-     */
-    
-    
+}
+
+
+
+
+
+
+int main()
+{
+    runTheProgram();
     
     
     
 }
+
+/*void testDehProgram()
+{
+    Testing testing;
+    
+    testing.testingCapacityBound();
+    testing.testingParkingCapabilities();
+    testing.testingEditCustomerInformationCapabilities();
+    testing.testingRenewParkingPass();
+    testingUpdatePassPrices();
+    
+    testingDisplayOperationsAnalyticsCapability();
+    testingDisplayBusinessAnalyticsCapability();
+    
+    
+}*/
+
+
 
 

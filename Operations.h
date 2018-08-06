@@ -8,7 +8,6 @@
 
 #ifndef Operations_h
 #define Operations_h
-#include "Customer.h"
  
 
 class Operations
@@ -256,7 +255,7 @@ public:
         cout<<"Total cars currently parked in garage: " << getTotalCarsCurrentlyInGarage()<<endl;
         cout<<"Total premium pass customers currently parked in the garage: "<<getTotalPremiumPassCustomersCurrentlyInTheGarage()<<endl;
         cout<<"Total basic pass customers currently parked in the garage: "<<getTotalBasicPassCustomersCurrentlyInTheGarage()<<endl;
-        cout<<"Total day pass customers currently parked in the garage: "<<getTotalBasicPassCustomersCurrentlyInTheGarage()<<endl<<endl;
+        cout<<"Total day pass customers currently parked in the garage: "<<getTotalDayPassCustomersCurrentlyInTheGarage()<<endl<<endl;
     }
     
     void displayRevenueAnalytics()
@@ -301,6 +300,14 @@ public:
         totalRevenueGeneratedFromPremiumPasses+=premiumPassPrice;
     }
     
+    void aPremiumPassHasExpired()
+    {
+        totalPassesLeft++;
+        totalPremiumPassesLeft++;
+    }
+    
+    
+    
     void basicPassIssued()
     {
         totalPassesLeft--;
@@ -308,6 +315,20 @@ public:
         
         totalRevenueGenerated+=basicPassPrice;
         totalRevenueGeneratedFromBasicPasses+=basicPassPrice;
+    }
+    
+    void aBasicPassHasExpired()
+    {
+        totalPassesLeft++;
+        totalBasicPassesLeft++;
+    }
+    
+    
+    
+    void aDayPassHasExpired()
+    {
+        totalPassesLeft++;
+        totalDayPassesLeft++;
     }
     
     void dayPassIssued()
@@ -318,6 +339,7 @@ public:
         totalRevenueGenerated+=dayPassPrice;
         totalRevenueGeneratedFromDayPasses+=premiumPassPrice;
     }
+    
     
 
     

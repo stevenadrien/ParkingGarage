@@ -27,6 +27,14 @@ public:
         
     }
     
+    Customer(string fName, string lName, string pNumber)
+    {
+        firstName = fName;
+        lastName = lName;
+        phoneNumber = pNumber;
+        
+    }
+    
     
     Customer(string fName, string lName, string pNumber, ParkingPass pass, Vehicle Vehicle)
     {
@@ -164,15 +172,7 @@ public:
     
     
     
-    void displayCustomerParkingPassInfo()
-    {
-        cout<<"Parking Pass Type: " + pass.getParkingPassType()<<endl;
-        if(pass.getParkingPassType() == 'p')
-        {
-            cout<<"Parking Pass Spot Number: " + pass.getParkingSpot()<<endl;
-        }
-        
-    }
+   
     
     
     
@@ -275,13 +275,8 @@ public:
     
     bool isItExpired()
     {
-       if(pass.isItExpired() == false)
-        {
-            return true;
-        }
+        return pass.isItExpired();
         
-        return false;
-
     }
     
     void renewParkingPass()

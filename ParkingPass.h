@@ -1,10 +1,6 @@
 #ifndef ParkingPass_h
 #define ParkingPass_h
 
-#include "ParkingGarage.h"
-#include <ctime>
-#include "Operations.h"
-#include <time.h>
 #include <chrono>
 
 
@@ -110,13 +106,18 @@ public:
     {
         end = std::chrono::system_clock::now();
     
-        std::chrono::duration<double> elapsed_seconds = end - start;
+        
+        auto time_elapsed = std::chrono::duration_cast<std::chrono::seconds>(end - start)/10;
+        
+        cout<<"Time elapsed: "<<time_elapsed.count()<<endl;
      
-        if(elapsed_seconds.count() == duration || elapsed_seconds.count() > duration)
+        if(time_elapsed.count() == duration || time_elapsed.count() > duration)
         {
+            cout<<"Pass no longer valid"<<endl;
             return true;
         }
         
+        cout<<"Pass valid"<<endl;
         return false;
         
     }

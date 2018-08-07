@@ -6,26 +6,61 @@ using namespace std;
 #include <string>
 
 
-void runTheProgram()
+
+
+
+
+
+int main()
 {
+    
     ParkingGarage parkingGarage;
     
-	int userChoice;
+    
+    //TESTING
+    //parkingGarage.testingCapacityBound();
+    //parkingGarage.testingParkingCapabilities();
+    //parkingGarage.testingEditCustomerInformationCapabilities();
+    //parkingGarage.testingRenewParkingPass();
+    //parkingGarage.testingUpdatePassPrices();
+    //parkingGarage.testingDisplayOperationsAnalyticsCapability();
+    //parkingGarage.testingDisplayBusinessAnalyticsCapability();
+    
+    
+    
+    
+    
+    int userChoice;
     
     string userLogin;
     
-    cout<<"Welcome to the Parking Garage System."<<endl;
-    cout<<"Please type in your login password to gain access to the system"<<endl;
+    cout<<"Welcome to the Parking Garage System."<<endl<<endl;
     
-    cin>>userLogin;
+    bool validLogin;
+
     
-    while(userLogin != parkingGarage.getLogin())
+    do
     {
-    	cout<<"Access denied, try again!"<<endl;
-    	cin>>userLogin;
-    }   
+        cout<<"Please type in your login password to gain access to the system:"<<endl;
     
-    cout<<"Login successful.  Welcome "<<parkingGarage.getAdminName()<<" :)"<<endl<<endl<<endl;
+        cin>>userLogin;
+    
+        if(userLogin == parkingGarage.getLogin())
+        {
+            cout<<"Login successful.  Welcome "<<parkingGarage.getAdminName()<<" :)"<<endl<<endl<<endl;
+            validLogin = true;
+            
+        }
+        
+        if(userLogin != parkingGarage.getLogin())
+        {
+            cout<<"Access denied, try again!"<<endl;
+            validLogin = false;
+        }
+    } while (validLogin == false);
+    
+    
+    
     do
     {
         cout << "Please type in your desired action. Type in -1 to logout and exit the program:"<<endl<<endl;
@@ -95,38 +130,10 @@ void runTheProgram()
         
         
     } while(userChoice != -1);
-    
-}
-
-
-
-
-
-
-int main()
-{
-    runTheProgram();
-    
+     
     
     
 }
-
-/*void testDehProgram()
-{
-    Testing testing;
-    
-    testing.testingCapacityBound();
-    testing.testingParkingCapabilities();
-    testing.testingEditCustomerInformationCapabilities();
-    testing.testingRenewParkingPass();
-    testingUpdatePassPrices();
-    
-    testingDisplayOperationsAnalyticsCapability();
-    testingDisplayBusinessAnalyticsCapability();
-    
-    
-}*/
-
 
 
 

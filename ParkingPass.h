@@ -59,6 +59,18 @@ public:
     void setParkingPassType(char pass)
     {
         parkingPassType = pass;
+        if (pass == 'p')
+		{
+			setDuration(50);
+		}
+		else if (pass == 'b')
+		{
+			setDuration(30);
+		}
+		else if (pass == 'd')
+		{
+			setDuration(15);
+		}
     }
     
     int getParkingSpot()
@@ -128,7 +140,7 @@ public:
         
         cout<<"Time elapsed: "<<time_elapsed.count()<<endl;
      
-        if(time_elapsed.count() == duration || time_elapsed.count() > duration)
+        if(time_elapsed.count() >= duration)
         {
             cout<<"Pass no longer valid"<<endl;
             return true;

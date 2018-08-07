@@ -6,15 +6,11 @@ using namespace std;
 #include <string>
 
 
-
-
-
-
 void runTheProgram()
 {
     ParkingGarage parkingGarage;
     
-    int userChoice;
+	int userChoice;
     
     string userLogin;
     
@@ -23,13 +19,13 @@ void runTheProgram()
     
     cin>>userLogin;
     
-    if(userLogin == parkingGarage.getLogin())
+    while(userLogin != parkingGarage.getLogin())
     {
-        cout<<"Login successful.  Welcome "<<parkingGarage.getAdminName()<<" :)"<<endl<<endl<<endl;
-    }
+    	cout<<"Access denied, try again!"<<endl;
+    	cin>>userLogin;
+    }   
     
-    
-    
+    cout<<"Login successful.  Welcome "<<parkingGarage.getAdminName()<<" :)"<<endl<<endl<<endl;
     do
     {
         cout << "Please type in your desired action. Type in -1 to logout and exit the program:"<<endl<<endl;

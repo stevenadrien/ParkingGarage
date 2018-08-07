@@ -13,7 +13,7 @@ class ParkingPass
     
 private:
     char parkingPassType;
-    int parkingSpot;
+    int parkingSpot = -1;
     double duration;
     clock_t timer;
     std::chrono::time_point<std::chrono::system_clock> start, end;
@@ -32,6 +32,23 @@ public:
     ParkingPass()
     {
         start = std::chrono::system_clock::now();
+    }
+    ParkingPass(char pass)
+    {
+        start = std::chrono::system_clock::now();
+		parkingPassType = pass;
+		if (pass == 'p')
+		{
+			duration = 50 ;
+		}
+		else if (pass == 'b')
+		{
+			duration = 30;
+		}
+		else if (pass == 'd')
+		{
+			duration = 15;
+		}
     }
     
     char getParkingPassType()

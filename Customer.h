@@ -44,25 +44,7 @@ public:
         
     }
     
-    
-    Customer(string fName, string lName, string pNumber, char desiredPassType, int desiredParkingSpot, string desiredVehicleYear, string desiredVehicleMake, string desiredVehicleModel, string desiredVehiclePlateNumber)
-    {
-        firstName = fName;
-        lastName = lName;
-        phoneNumber = pNumber;
-    
-        
-        pass.setParkingPassData(desiredPassType);
-        pass.setParkingPassData(desiredPassType, desiredParkingSpot);
-        
-        vehicle.setYear(desiredVehicleYear);
-        vehicle.setMake(desiredVehicleMake);
-        vehicle.setModel(desiredVehicleModel);
-        vehicle.setPlateNumber(desiredVehiclePlateNumber);
-
-        
-        
-    }
+ 
     
     //Basic relevant customer-related functions (getters and setters for this class's  variables)
     string getFirstName()
@@ -112,12 +94,8 @@ public:
     }
     
     
-    string getCustomerVehicle()
-    {
-        return vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel();
-    }
     
-    string getVehicleYear()
+    int getVehicleYear()
     {
         return vehicle.getYear();
     }
@@ -194,6 +172,8 @@ public:
         vehicle.inputVehicleInfo();
         
     }
+    
+    
     
     
     

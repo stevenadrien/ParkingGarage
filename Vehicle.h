@@ -21,8 +21,9 @@
 #ifndef Vehicle_h
 #define Vehicle_h
 
-
-
+#include <iostream>
+#include <limits>
+using namespace std;
 class Vehicle
 
 {
@@ -31,10 +32,7 @@ private:
     string make;
     string model;
     string plateNumber;
-    bool currentlyInGarage;
-
-    
-    
+    bool currentlyInGarage; 
 public:
     
     Vehicle()
@@ -113,36 +111,10 @@ public:
     //Related to actual program functionality
     void inputVehicleInfo()
     {
-        bool validYearInput;
-        
-        do
-        {
-            cout<<"Enter the year of the customer's vehicle:"<<endl;
-            cin>>year;
-            
-            if(year <=0 )
-            {
-                cout<<"Invalid year input.  Please enter a number greater than 0!"<<endl;
-                validYearInput = false;
-            }
-            
-            if( year > 0)
-            {
-                validYearInput = true;
-            }
-            
-        } while (validYearInput == false);
-            
-        
-        cout<<"Enter the make of the customer's vehicle:"<<endl;
-        cin>>make;
-        
-        cout<<"Enter the model of the customer's vehicle:"<<endl;
-        cin>>model;
-        
-        cout<<"Enter the plate number of the customer's vehicle:"<<endl;
-        cin>>plateNumber;
-        
+        editCustomerVehicleYear();
+        editCustomerVehicleMake();
+        editCustomerVehicleModel();
+        editCustomerVehiclePlateNumber();
     }
     
     
@@ -151,8 +123,28 @@ public:
     
     void editCustomerVehicleYear()
     {
-        cout<<"Enter the year of the customer's vehicle:"<<endl;
-        cin>>year;
+        bool validYearInput= false;       
+        do
+        {
+            cin>>year;
+	        if (cin.good())
+	        {
+		        if(year <=0 )
+	            {
+	            	cin.clear();
+	            	cin.ignore(numeric_limits<streamsize>::max(),'\n');
+	                cout<<"Invalid year input.  Please enter a number greater than 0!"<<endl;
+	    		}
+	    		else
+		    		validYearInput = true;  
+	        }
+	        else
+	        {
+	            cin.clear();
+	            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+	            cout << "Invalid input; please renter the year of the customer's vehicle:" << endl;
+	        }
+	    } while (!validYearInput);
     }
     
     void editCustomerVehicleMake()
@@ -171,17 +163,6 @@ public:
         cin>>plateNumber;
     }
     
-    
-    
-    
-    
 };
-
-
-
-
-
-
-
 
 #endif /* Vehicle_h */

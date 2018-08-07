@@ -337,7 +337,7 @@ public:
         totalDayPassesLeft--;
         
         totalRevenueGenerated+=dayPassPrice;
-        totalRevenueGeneratedFromDayPasses+=premiumPassPrice;
+        totalRevenueGeneratedFromDayPasses+=dayPassPrice;
     }
     
     

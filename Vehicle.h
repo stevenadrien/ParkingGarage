@@ -1,3 +1,23 @@
+/*This class is responsible for the attributes that deal with a customer's vehicle; things like
+ --getting and setting the year of the customer's vehicle
+ --getting and setting the make of the customer's vehicle
+ --getting and setting the model of the customer's vehicle
+ --getting and setting the plate number of the customer's vehicle
+ --keeping track of whether or not the vehicle is ACTUALLY in the parking garage
+ 
+ Most relevant functions are:
+ 
+ --inputVehicleInfo(); which is essentially a wizard that captures the values for all these attributes
+ --editCustomerVehicleYear(),
+ --editCustomerVehicleMake(),
+ --editCustomerVehicleModel(),
+ --editCustomerVehiclePlateNumber(), which is a wizard that captures these attributes individually, and is tied to a function in the
+ Customer class
+ 
+ */
+ 
+
+
 #ifndef Vehicle_h
 #define Vehicle_h
 
@@ -7,7 +27,7 @@ class Vehicle
 
 {
 private:
-    string year;
+    int year;
     string make;
     string model;
     string plateNumber;
@@ -23,7 +43,7 @@ public:
     }
     
     
-    Vehicle(string yr, string mk, string ml, string plate)
+    Vehicle(int yr, string mk, string ml, string plate)
     {
         year = yr;
         make = mk;
@@ -32,12 +52,12 @@ public:
         
     }
     
-    string getYear()
+    int getYear()
     {
         return year;
     }
     
-    void setYear(string yr)
+    void setYear(int yr)
     {
         year = yr;
     }
@@ -93,8 +113,26 @@ public:
     //Related to actual program functionality
     void inputVehicleInfo()
     {
-        cout<<"Enter the year of the customer's vehicle:"<<endl;
-        cin>>year;
+        bool validYearInput;
+        
+        do
+        {
+            cout<<"Enter the year of the customer's vehicle:"<<endl;
+            cin>>year;
+            
+            if(year <=0 )
+            {
+                cout<<"Invalid year input.  Please enter a number greater than 0!"<<endl;
+                validYearInput = false;
+            }
+            
+            if( year > 0)
+            {
+                validYearInput = true;
+            }
+            
+        } while (validYearInput == false);
+            
         
         cout<<"Enter the make of the customer's vehicle:"<<endl;
         cin>>make;

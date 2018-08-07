@@ -10,7 +10,6 @@
 
 
 
-
 class ParkingGarage
 {
     //Data structure holding a set of customers with fixed-size capacity of 300
@@ -161,8 +160,6 @@ public:
             
             
         } while (userChoice != 8);
-        
-    
         
     }
     
@@ -433,9 +430,7 @@ public:
     {
         bool isPassExpired = customers[customerID].isItExpired();
         
-        cout<<"Customer pass is expired (0 is no, 1 is yes): "<<isPassExpired<<endl;
-
-        
+                
         switch(isPassExpired)
         {
                 case false:
@@ -464,7 +459,7 @@ public:
                 else
                 {
                     cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " is..already in the garage...?"<<endl;
-                    cout<<"Someone may have forged their credentials and attempting to access the parking garage illegally"<<endl;
+                    cout<<"Someone may have forged their credentials and attempting to access the parking garage illegally"<<endl<<endl;
                 }
                 
                 break;
@@ -487,7 +482,7 @@ public:
         if(customers[customerID].parkedInHere() == true)
         {
             customers[customerID].leavingTheGarage();
-            cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " has unparked his car from the garage"<<endl<<endl;
+            cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " has unparked their car from the garage"<<endl<<endl;
             operations.aCarHasExitedTheGarage();
             
             
@@ -509,8 +504,6 @@ public:
             
             
             bool isPassExpired = customers[customerID].isItExpired();
-
-            cout<<"Customer pass is expired (0 is no, 1 is yes): "<<isPassExpired<<endl;
             
             if(isPassExpired == true)
             {
@@ -536,27 +529,80 @@ public:
         int newBasic;
         int newDay;
         
+        bool validPremiumInput;
+        bool validBasicInput;
+        bool validDayInput;
     
         cout<<"****PARKING PRICES SETTINGS****"<<endl<<endl;
+        
         
         cout<<"Here are the current parking pass prices: "<<endl;
         operations.displayParkingPassPrices();
         
+    
+        do
+        {
+            cout<<"Enter the desired price for a premium pass"<<endl;
+            cin>>newPremium;
+            
+            if(newPremium <= 0)
+            {
+                cout<<"Invalid input.  Please enter a number greater than 0!"<<endl;
+                validPremiumInput = false;
+            }
+            
+            else
+            {
+                validPremiumInput = true;
+            }
+            
+            
+        } while(validPremiumInput == false);
         
-        cout<<"Enter the desired price for a premium pass"<<endl;
-        cin>>newPremium;
         operations.setPremiumPassPrice(newPremium);
+
         
-        cout<<"Enter the desired price for a basic pass"<<endl;
-        cin>>newBasic;
+        do
+        {
+            cout<<"Enter the desired price for a basic pass"<<endl;
+            cin>>newBasic;
+            
+            if(newBasic <= 0)
+            {
+                cout<<"Invalid input.  Please enter a number greater than 0!"<<endl;
+                validBasicInput = false;
+            }
+            
+            else
+            {
+                validBasicInput = true;
+            }
+            
+        } while(validBasicInput == false);
+
         operations.setBasicPassPrice(newBasic);
 
         
-        cout<<"Enter the desired price for a day pass"<<endl;
-        cin>>newDay;
+        do
+        {
+            cout<<"Enter the desired price for a day pass"<<endl;
+            cin>>newDay;
+            
+            if(newDay <= 0)
+            {
+                cout<<"Invalid input.  Please enter a number greater than 0!"<<endl;
+                validDayInput = false;
+            }
+
+            else
+            {
+                validDayInput = true;
+            }
+            
+        } while(validDayInput == false);
+
         operations.setDayPassPrice(newDay);
 
-        
         cout<<"Parking prices have been set.  Here are the new prices:"<<endl<<endl;
         
         operations.displayParkingPassPrices();
@@ -600,8 +646,164 @@ public:
         
     }
     
+//*************************************************************************************************************************************
+    //TESTINGGGG
+    //fills customers[300] up; making sure it doesnt allow another entry after 300; so I set the constructor customerCount to 300; If
+    //our add a customer works as intended, I should see an error message
+    void testingCapacityBound()
+    {
+        cout<<"****TESTING CAPACITY****"<<endl;
+
+        addACustomer();
+     
+        
+        cout<<"Testing complete"<<endl;
+        
+    }
     
     
+    
+    //park car (parked in the garage);;;parkACar(int customerID); so we'll create 2 customers (premium customers); so we can cheeck
+    //to see that it doesn't allow us to choose the same reserved parking spot. Then we'll park and un-park them. 3 birds, 1 stone :P
+    //Also checking to make sure you can't park a car that's already parked, and we can't unpark a car that has already been unparked
+    void testingParkingCapabilities()
+    {
+        cout<<"****TESTING PARKING CAPABILITIES****"<<endl;
+        
+        
+        addACustomer();
+        addACustomer();
+        
+        //Parking customers 1 and 2, and checking that this did indeed happen/also checking for parking already parked cars
+        cout<<"Parking car #1"<<endl;
+        parkACar(0);
+        
+        parkACar(0);
+        
+        cout<<"Parking car #2"<<endl;
+        parkACar(1);
+        
+        displayOperationsAnalytics();
+        
+        
+        //Unparking customers 1 and 2, and checking that this did indeed happen/also checking for unparking already unparked cars
+        cout<<"Unparking car #1"<<endl;
+        unParkACar(0);
+        
+        unParkACar(0);
+        
+        cout<<"Unparking car #2"<<endl;
+        unParkACar(1);
+        
+        
+        displayOperationsAnalytics();
+
+        
+        
+        cout<<"Testing complete"<<endl;
+    }
+    
+    
+    void testingEditCustomerInformationCapabilities()
+    {
+        cout<<"****TESTING CUSTOMER INFO EDIT CAPABILITIES****"<<endl;
+        
+        addACustomer();
+        editCustomerInfo(0);
+        
+        cout<<"Testing complete"<<endl;
+        
+    }
+    
+    
+    void testingRenewParkingPass()
+    {
+        cout<<"****TESTING RENEW PARKING PASS CAPABILITY****"<<endl;
+        
+        addACustomer();
+
+        int c;
+        cout<<"1. Andddd go!!!: "<<endl;
+        cin>>c;
+        
+        parkACar(0);
+        
+        cout<<"Testing complete"<<endl;
+        
+        
+    }
+    
+    
+    void testingUpdatePassPrices()
+    {
+        cout<<"****TESTING UPDATE PARKING PRICES CAPABILITY****"<<endl;
+        
+        setParkingPassPrices();
+        
+        cout<<"Testing complete"<<endl;
+        
+        
+    }
+    
+    
+    void testingDisplayOperationsAnalyticsCapability()
+    {
+        cout<<"****TESTING OPERATIONS ANALYTICS CAPABILITY****"<<endl;
+        
+        displayOperationsAnalytics();
+        
+        addACustomer();
+        addACustomer();
+        addACustomer();
+        
+        displayOperationsAnalytics();
+
+        parkACar(0);
+        parkACar(1);
+        parkACar(2);
+        
+        displayOperationsAnalytics();
+        
+        unParkACar(0);
+        unParkACar(1);
+        unParkACar(2);
+        
+        displayOperationsAnalytics();
+        
+        cout<<"Testing complete"<<endl;
+    }
+    
+    
+    
+    //display biz analytics
+    void testingDisplayBusinessAnalyticsCapability()
+    {
+        cout<<"****TESTING BUSINESS ANALYTICS CAPABILITY****"<<endl;
+        
+        
+        displayBusinessAnalytics();
+        
+        addACustomer();
+        addACustomer();
+        addACustomer();
+        
+        displayBusinessAnalytics();
+        
+        int c;
+        cout<<"1. Andddd go!!!: "<<endl;
+        cin>>c;
+        
+        parkACar(0);
+        parkACar(1);
+        parkACar(2);
+        
+        displayBusinessAnalytics();
+
+
+        
+        cout<<"Testing complete"<<endl;
+    }
+
     
     
     

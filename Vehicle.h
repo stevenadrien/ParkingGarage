@@ -124,32 +124,10 @@ public:
     //Related to actual program functionality
     void inputVehicleInfo()
     {
-        bool validYearInput;
-        
-        do
-        {
-            editCustomerVehicleYear();
-            
-            if(year <=0 )
-            {
-                cout<<"Invalid year input.  Please enter a number greater than 0!"<<endl;
-                validYearInput = false;
-            }
-            
-            if( year > 0)
-            {
-                validYearInput = true;
-            }
-            
-        } while (validYearInput == false);
-            
-        
+        editCustomerVehicleYear();
         editCustomerVehicleMake();
-        
         editCustomerVehicleModel();
-        
-        editCustomerVehicleLicensePlateNumber();
-        
+        editCustomerVehiclePlateNumber();
     }
     
     
@@ -158,8 +136,28 @@ public:
     
     void editCustomerVehicleYear()
     {
-        cout<<"Enter the year of the customer's vehicle:"<<endl;
-        cin>>year;
+        bool validYearInput= false;       
+        do
+        {
+            cin>>year;
+	        if (cin.good())
+	        {
+		        if(year <=0 )
+	            {
+	            	cin.clear();
+	            	cin.ignore(numeric_limits<streamsize>::max(),'\n');
+	                cout<<"Invalid year input.  Please enter a number greater than 0!"<<endl;
+	    		}
+	    		else
+		    		validYearInput = true;  
+	        }
+	        else
+	        {
+	            cin.clear();
+	            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+	            cout << "Invalid input; please renter the year of the customer's vehicle:" << endl;
+	        }
+	    } while (!validYearInput);
     }
     
     void editCustomerVehicleMake()
@@ -172,15 +170,11 @@ public:
         cout<<"Enter the model of the customer's vehicle:"<<endl;
         cin>>model;
     }
-    void editCustomerVehicleLicensePlateNumber()
+    void editCustomerVehiclePlateNumber()
     {
-        cout<<"Enter the license plate number of the customer's vehicle:"<<endl;
-        cin>>licensePlateNumber;
+        cout<<"Enter the plate number of the customer's vehicle:"<<endl;
+        cin>>plateNumber;
     }
-    
-    
-    
-    
     
 };
 

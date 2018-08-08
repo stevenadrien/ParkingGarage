@@ -6,6 +6,20 @@
 //  Copyright © 2018 Steven Ouandji. All rights reserved.
 //
 
+/*This class is responsible for attributes that are tied to the parking garage's state-of-affairs; things like
+ --keeping count of total customers currently parked in the garage
+ --keeping count of total revenue generated, from each parking pass tier
+ --keeping count of total passes available for issuance, for each parking pass tier
+ --getting and setting current pass prices
+ 
+ and the sorts of information that are related to analytical purposes.
+ 
+ */
+ 
+
+
+
+
 #ifndef Operations_h
 #define Operations_h
  

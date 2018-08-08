@@ -178,7 +178,7 @@ public:
     
     
     //Garage-related functions// state of the garage
-    int getTotalCarsCurrentlyInGarage()
+    int getTotalCarsCurrentlyInTheGarage()
     {
         return totalCarsCurrentlyInTheGarage;
     }
@@ -252,7 +252,7 @@ public:
     //Analytics related functions
     void showOperationsAnalytics()
     {
-        cout<<"Total cars currently parked in garage: " << getTotalCarsCurrentlyInGarage()<<endl;
+        cout<<"Total cars currently parked in garage: " << getTotalCarsCurrentlyInTheGarage()<<endl;
         cout<<"Total premium pass customers currently parked in the garage: "<<getTotalPremiumPassCustomersCurrentlyInTheGarage()<<endl;
         cout<<"Total basic pass customers currently parked in the garage: "<<getTotalBasicPassCustomersCurrentlyInTheGarage()<<endl;
         cout<<"Total day pass customers currently parked in the garage: "<<getTotalDayPassCustomersCurrentlyInTheGarage()<<endl<<endl;

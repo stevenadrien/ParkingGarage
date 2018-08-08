@@ -112,7 +112,7 @@ public:
     
     string getVehiclePlateNumber()
     {
-        return vehicle.getPlateNumber();
+        return vehicle.getLicensePlateNumber();
     }
     
     
@@ -219,9 +219,9 @@ public:
 
     }
     
-    void editCustomerVehiclePlateNumber()
+    void editCustomerVehicleLicensePlateNumber()
     {
-        vehicle.editCustomerVehiclePlateNumber();
+        vehicle.editCustomerVehicleLicensePlateNumber();
 
     }
     
@@ -246,9 +246,9 @@ public:
     
     
     
-    bool parkedInHere()
+    bool parkedInTheGarage()
     {
-        return vehicle.isItCurrentlyInGarage();
+        return vehicle.isItCurrentlyInTheGarage();
         
     }
     

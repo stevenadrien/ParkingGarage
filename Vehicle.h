@@ -1,3 +1,14 @@
+
+//
+//  Vehicle.h
+//  ParkingGarage
+//
+//  Created by Steven Ouandji on 26/07/18.
+//  Copyright © 2018 Steven Ouandji. All rights reserved.
+//
+
+
+
 /*This class is responsible for the attributes that deal with a customer's vehicle; things like
  --getting and setting the year of the customer's vehicle
  --getting and setting the make of the customer's vehicle
@@ -21,9 +32,8 @@
 #ifndef Vehicle_h
 #define Vehicle_h
 
-#include <iostream>
-#include <limits>
-using namespace std;
+
+
 class Vehicle
 
 {
@@ -31,13 +41,16 @@ private:
     int year;
     string make;
     string model;
-    string plateNumber;
-    bool currentlyInGarage; 
+    string licensePlateNumber;
+    bool currentlyInTheGarage;
+
+    
+    
 public:
     
     Vehicle()
     {
-        currentlyInGarage = false;
+        currentlyInTheGarage = false;
     }
     
     
@@ -46,7 +59,7 @@ public:
         year = yr;
         make = mk;
         model = ml;
-        plateNumber = plate;
+        licensePlateNumber = plate;
         
     }
     
@@ -81,40 +94,62 @@ public:
         model = ml;
     }
     
-    string getPlateNumber()
+    string getLicensePlateNumber()
     {
-        return plateNumber;
+        return licensePlateNumber;
     }
     
-    void setPlateNumber(string plate)
+    void setLicensePlateNumber(string plate)
     {
-        plateNumber = plate;
+        licensePlateNumber = plate;
     }
     
     
-    bool isItCurrentlyInGarage()
+    bool isItCurrentlyInTheGarage()
     {
-        return currentlyInGarage;
+        return currentlyInTheGarage;
     }
     
     void parkingInParkingSpot()
     {
-        currentlyInGarage = true;
+        currentlyInTheGarage = true;
     }
     
     void leavingTheParkingSpot()
     {
-        currentlyInGarage = false;
+        currentlyInTheGarage = false;
     }
     
     
     //Related to actual program functionality
     void inputVehicleInfo()
     {
-        editCustomerVehicleYear();
+        bool validYearInput;
+        
+        do
+        {
+            editCustomerVehicleYear();
+            
+            if(year <=0 )
+            {
+                cout<<"Invalid year input.  Please enter a number greater than 0!"<<endl;
+                validYearInput = false;
+            }
+            
+            if( year > 0)
+            {
+                validYearInput = true;
+            }
+            
+        } while (validYearInput == false);
+            
+        
         editCustomerVehicleMake();
+        
         editCustomerVehicleModel();
-        editCustomerVehiclePlateNumber();
+        
+        editCustomerVehicleLicensePlateNumber();
+        
     }
     
     
@@ -123,28 +158,8 @@ public:
     
     void editCustomerVehicleYear()
     {
-        bool validYearInput= false;       
-        do
-        {
-            cin>>year;
-	        if (cin.good())
-	        {
-		        if(year <=0 )
-	            {
-	            	cin.clear();
-	            	cin.ignore(numeric_limits<streamsize>::max(),'\n');
-	                cout<<"Invalid year input.  Please enter a number greater than 0!"<<endl;
-	    		}
-	    		else
-		    		validYearInput = true;  
-	        }
-	        else
-	        {
-	            cin.clear();
-	            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-	            cout << "Invalid input; please renter the year of the customer's vehicle:" << endl;
-	        }
-	    } while (!validYearInput);
+        cout<<"Enter the year of the customer's vehicle:"<<endl;
+        cin>>year;
     }
     
     void editCustomerVehicleMake()
@@ -157,12 +172,23 @@ public:
         cout<<"Enter the model of the customer's vehicle:"<<endl;
         cin>>model;
     }
-    void editCustomerVehiclePlateNumber()
+    void editCustomerVehicleLicensePlateNumber()
     {
-        cout<<"Enter the plate number of the customer's vehicle:"<<endl;
-        cin>>plateNumber;
+        cout<<"Enter the license plate number of the customer's vehicle:"<<endl;
+        cin>>licensePlateNumber;
     }
     
+    
+    
+    
+    
 };
+
+
+
+
+
+
+
 
 #endif /* Vehicle_h */

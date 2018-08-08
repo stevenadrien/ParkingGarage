@@ -1,3 +1,29 @@
+
+//
+//  ParkingPass.h
+//  ParkingGarage
+//
+//  Created by Steven Ouandji on 26/07/18.
+//  Copyright © 2018 Steven Ouandji. All rights reserved.
+//
+
+
+
+/*
+ This class is responsible for the attributes that deal with a customer's parking pass; things like
+ --getting and setting the parking pass type
+ --getting and setting the duration of time that a parking pass is valid for
+ --getting and setting the parking spot, if we're dealing with a premium parking pass customer
+ 
+ 
+ Most relevant functions are:
+ 
+ -bool isItExpired(int customerID); which receives the customer's ID and checks if their parking pass is still valid (based on the duration value set by its respective parking pass tier)
+ 
+ -void renewParkingPass(); which simply sets the starting time (or date of creation, if you want to think of it like that) of a parking pass to now.
+ */
+
+
 #ifndef ParkingPass_h
 #define ParkingPass_h
 
@@ -13,10 +39,11 @@ class ParkingPass
     
 private:
     char parkingPassType;
-    int parkingSpot = -1;
+    int parkingSpot;
     double duration;
     clock_t timer;
     std::chrono::time_point<std::chrono::system_clock> start, end;
+    
 
    // Date dateCreated;
    // Date expirationDate;
@@ -33,23 +60,6 @@ public:
     {
         start = std::chrono::system_clock::now();
     }
-    ParkingPass(char pass)
-    {
-        start = std::chrono::system_clock::now();
-		parkingPassType = pass;
-		if (pass == 'p')
-		{
-			duration = 50 ;
-		}
-		else if (pass == 'b')
-		{
-			duration = 30;
-		}
-		else if (pass == 'd')
-		{
-			duration = 15;
-		}
-    }
     
     char getParkingPassType()
     {
@@ -59,18 +69,6 @@ public:
     void setParkingPassType(char pass)
     {
         parkingPassType = pass;
-        if (pass == 'p')
-		{
-			setDuration(50);
-		}
-		else if (pass == 'b')
-		{
-			setDuration(30);
-		}
-		else if (pass == 'd')
-		{
-			setDuration(15);
-		}
     }
     
     int getParkingSpot()
@@ -138,15 +136,14 @@ public:
         
         auto time_elapsed = std::chrono::duration_cast<std::chrono::seconds>(end - start)/10;
         
-        cout<<"Time elapsed: "<<time_elapsed.count()<<endl;
+        cout<<"Time elapsed since parking pass creation: "<<time_elapsed.count()<<" seconds"<<endl;
      
-        if(time_elapsed.count() >= duration)
+        if(time_elapsed.count() == duration || time_elapsed.count() > duration)
         {
-            cout<<"Pass no longer valid"<<endl;
+            cout<<"Pass no longer valid :("<<endl<<endl;
             return true;
         }
         
-        cout<<"Pass valid"<<endl;
         return false;
         
     }

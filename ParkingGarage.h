@@ -671,9 +671,20 @@ public:
     {
         cout<<"****PARKING GARAGE STATUS****"<<endl;
         
-        cout<<"Here are the customers that are currently parked in the garage"<<endl<<endl;
+        cout<<"Here are the customers that are currently parked in the garage:"<<endl<<endl;
 
+        
+        if(operations.getTotalCarsCurrentlyInTheGarage() == 0)
+        {
+            cout<<"There are currently no customers parked in the garage..:'("<<endl<<endl;
+            return;
+        }
+        
+        
         int x = 0;
+        
+        
+        
         while(x < customerCount)
         {
             if(customers[x].parkedInTheGarage() == true)
@@ -685,12 +696,7 @@ public:
                 
             x++;
         }
-        
-        if(operations.getTotalCarsCurrentlyInTheGarage() == 0)
-        {
-            cout<<"There are currently no customers parked in the garage"<<endl;
-        }
-        
+    
     }
     
     void whichReservedSpotsAreAlreadyTaken()
@@ -699,7 +705,7 @@ public:
         
         cout<<"Here are the reserved spots that are already taken: "<<endl<<endl;
         
-        int count;
+        int count = 0;
         
         int x = 0;
         while(x < customerCount)
@@ -715,7 +721,7 @@ public:
         
         if(count == 0 )
         {
-            cout<<"All premium parking spots are available for reservation"<<endl;
+            cout<<"No current reservation.  All premium parking spots are available for reservation"<<endl<<endl;
         }
     }
     
@@ -854,8 +860,7 @@ public:
         setParkingPassPrices();
         
         cout<<"Testing complete"<<endl;
-        
-        
+    
     }
     
     

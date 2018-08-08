@@ -32,7 +32,7 @@
 #ifndef Vehicle_h
 #define Vehicle_h
 
-
+#include <limits>
 
 class Vehicle
 
@@ -127,7 +127,7 @@ public:
         editCustomerVehicleYear();
         editCustomerVehicleMake();
         editCustomerVehicleModel();
-        editCustomerVehiclePlateNumber();
+        editCustomerVehicleLicensePlateNumber();
     }
     
     
@@ -170,10 +170,10 @@ public:
         cout<<"Enter the model of the customer's vehicle:"<<endl;
         cin>>model;
     }
-    void editCustomerVehiclePlateNumber()
+    void editCustomerVehicleLicensePlateNumber()
     {
         cout<<"Enter the plate number of the customer's vehicle:"<<endl;
-        cin>>plateNumber;
+        cin>>licensePlateNumber;
     }
     
 };

@@ -6,6 +6,10 @@
 //  Copyright © 2018 Steven Ouandji. All rights reserved.
 //
 
+
+/*This class deals with unitcase testing; essentially testing all the functionalites, capabilities, and constraints placed on the program, ensuring that everything is as it should be
+ */
+
 #ifndef Testing_h
 #define Testing_h
 
@@ -189,7 +193,7 @@ public:
 
 
 
-
+};
 
 
 

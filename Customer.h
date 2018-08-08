@@ -1,11 +1,34 @@
+
+//
+//  Customer.h
+//  ParkingGarage
+//
+//  Created by Steven Ouandji on 26/07/18.
+//  Copyright © 2018 Steven Ouandji. All rights reserved.
+//
+
+/*
+ This class is responsible for the attributes that deal with a customer; things like
+ --getting and setting their first- and last-name, their phone number, and interacting with their parking pass and vehicle information
+ 
+ Because this is a parent class--in the sense that it holds 2 pertinant external objects (ParkingPass and Vehicle)--it's padded with
+ functions that grant public access to these objects' functions.
+
+ It is also comprises of "wizard" functions that facilitate user input
+ 
+*/
+
+
+
+
+
+
 #ifndef Customer_h
 #define Customer_h
 
 #include "Vehicle.h"
 #include "ParkingPass.h"
-#include "Security.h"
 #include <string>
-#include "Operations.h"
 
 
 

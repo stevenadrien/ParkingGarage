@@ -1,4 +1,59 @@
 
+//
+//  ParkingGarage.h
+//  ParkingGarage
+//
+//  Created by Steven Ouandji on 26/07/18.
+//  Copyright © 2018 Steven Ouandji. All rights reserved.
+//
+
+/*This class is related to the overall creation, management, and operation of the parking garage. It comprises of :
+ --a Customer array object, that houses the data for all customers in the parking garage
+ --a customerCount object, that keeps count of how many customers have been created
+ --an Operations object, that deals with keeping track of the state-of-affairs
+ --a Security object, that will serve to implement safeguard protocols for the parking garage system
+ 
+ and a Time object, to keep track of the unfolding of Time :)
+ 
+ "1. Park A Car"<<endl;
+ cout << "2. Un-Park A Car"<<endl;
+ cout << "3. Issue A New Parking Pass"<<endl;
+ cout << "4. Renew A Parking Pass"<<endl;
+ cout << "5. Set Parking Pass Prices"<<endl;
+ cout << "6. Who Is In The Garage"<<endl;
+ cout << "7. Which Reserved Spots Are Already Taken"<<endl;
+ cout << "8. Display Operations Analytics"<<endl;
+ cout << "9. Display Business Analytics"<<endl;
+ cout << "10. Edit Customer Info"<<endl;
+ 
+ 
+ 
+ 
+ Relevant functionalities:
+ --ddACustomer(int customerID) --->think of customerID as the index needed to access a particular customer's information, within the Customer array object
+ --parkACar(int customerID)
+ --unParkACar(int customerID)
+ --renewParkingPass(int customerID)
+ --setParkingPassPrices(int customerID)
+ --whoIsInTheGarage()
+ --whichReservedSpotsAreAlreadyTaken()
+ --displayOperationsAnalytics()
+ --displayBusinessAnalytics()
+ --editCustomerInfo(int customerID)
+
+ Relevant $waggy ass support functions:
+ --void setParkingPassInfo(int customerID)
+ --void showCurrentPassPrices()
+ --void weHaveANewCustomer(int customerID)
+ --void aPassHasExpired(int customerID)
+ --void promptRenewalOfParkingPass(int customerID)
+
+ 
+ Cheers ;)
+
+ */
+
+
 #ifndef ParkingGarage_h
 #define ParkingGarage_h
 
@@ -19,7 +74,7 @@ class ParkingGarage
 private:
     Customer customers[300];
     int customerCount;
-    Security admins;
+    Security security;
     Operations operations;
     std::chrono::time_point<std::chrono::system_clock> start, end;
 
@@ -42,13 +97,13 @@ public:
     
     string getLogin()
     {
-        return admins.getLogin();
+        return security.getLogin();
     
     }
     
     string getAdminName()
     {
-        return admins.getName();
+        return security.getName();
     }
     
     
@@ -56,7 +111,8 @@ public:
     //Add a customer
     //Renew a parking pass
     //Park a car in the garage;; check if its a customer. if so, let him in; else fukkk off m8
-    //"Un-park" a car from the garage; decrement current car park
+    //"Un-park" a car from the garage; decrement current car parked in garage count
+    
     //Bizzz analytics
     //Set parking pass prices
     
@@ -152,7 +208,7 @@ public:
                     break;
                     
                 case 7:
-                    customers[customerID].editCustomerVehiclePlateNumber();
+                    customers[customerID].editCustomerVehicleLicensePlateNumber();
                     break;
                 
             }
@@ -434,7 +490,7 @@ public:
         switch(isPassExpired)
         {
                 case false:
-                if(customers[customerID].parkedInHere() == false)
+                if(customers[customerID].parkedInTheGarage() == false)
                 {
                     customers[customerID].enteringTheGarage();
                     cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " has entered the garage!"<<endl<<endl;
@@ -479,7 +535,7 @@ public:
     
     void unParkACar(int customerID)
     {
-        if(customers[customerID].parkedInHere() == true)
+        if(customers[customerID].parkedInTheGarage() == true)
         {
             customers[customerID].leavingTheGarage();
             cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " has unparked their car from the garage"<<endl<<endl;
@@ -609,6 +665,63 @@ public:
         
         
     }
+    
+    
+    void whoIsInTheGarage()
+    {
+        cout<<"****PARKING GARAGE STATUS****"<<endl;
+        
+        cout<<"Here are the customers that are currently parked in the garage"<<endl<<endl;
+
+        int x = 0;
+        while(x < customerCount)
+        {
+            if(customers[x].parkedInTheGarage() == true)
+            {
+                cout<<"Customer #"<<x<<" - "<<customers[x].getCustomerName()<<":"<<endl;
+                cout<<"Parking pass type: "<<customers[x].getParkingPassType()<<endl;
+                cout<<"Vehicle license plate number: "<<customers[x].getVehiclePlateNumber()<<endl<<endl;
+            }
+                
+            x++;
+        }
+        
+        if(operations.getTotalCarsCurrentlyInTheGarage() == 0)
+        {
+            cout<<"There are currently no customers parked in the garage"<<endl;
+        }
+        
+    }
+    
+    void whichReservedSpotsAreAlreadyTaken()
+    {
+        cout<<"****RESERVED SPOTS STATUS****"<<endl;
+        
+        cout<<"Here are the reserved spots that are already taken: "<<endl<<endl;
+        
+        int count;
+        
+        int x = 0;
+        while(x < customerCount)
+        {
+            if(customers[x].getParkingPassType() == 'p')
+            {
+                cout<<"Premium parking spot number #"<<customers[x].getParkingSpot()<<" reserved to customer #"<<x<<" - " <<customers[x].getCustomerName()<<endl;
+                count++;
+            }
+        
+            x++;
+        }
+        
+        if(count == 0 )
+        {
+            cout<<"All premium parking spots are available for reservation"<<endl;
+        }
+    }
+    
+    
+    
+    
     
     
     

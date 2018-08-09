@@ -2,7 +2,7 @@ using namespace std;
 
 
 #include <iostream>
-#include "ParkingGarage1.h"
+#include "ParkingGarage.h"
 #include <string>
 
 
@@ -148,8 +148,6 @@ int main()
                 
                 
             case 7:
-            	system("CLS");
-				parkingGarage.didplayScreen();
                 cout<<"Please enter the customer ID of the person desiring to renew their parking pass: "<<endl;
                 cin>>customerID;
                 parkingGarage.renewParkingPass(customerID);
@@ -158,11 +156,11 @@ int main()
                 
                 
             case 8:
-            	system("CLS");
-				parkingGarage.didplayScreen();
                 cout<<"Pleas enter the customer ID of the person desiring to edit their information: "<<endl;
                 cin>>customerID;
                 parkingGarage.editCustomerInfo(customerID);
+                system("pause");
+                break;
         	}
         
         

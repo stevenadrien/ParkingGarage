@@ -21,7 +21,7 @@ class Screen{
     }
     void displayScreen(int total, int premium, int basic, int day, int CustomerCount) const { 
     	system("CLS");
-		cout<<endl<<"         Welcome to the Parking Garage System.                     "<<total<<" Cars in Garage:"<<endl<<endl
+		cout<<endl<<"         Welcome to the Parking Garage System.                     "<<total<<" Car(s) in Garage:"<<endl<<endl
 		<<" | "<<spot[0]<<"  | "<<spot[1]<<"  | "<<spot[2]<<"  | "<<spot[3]<<"  | "<<spot[4]<<"  | "<<spot[5]<<"  | "
 		<<spot[6]<<"  | "<<spot[7]<<"  | "<<spot[8]<<"  | "<<spot[9]<<"  |                     PremiumPass holders: "<<premium<<endl
 		
@@ -31,7 +31,7 @@ class Screen{
 		<<" --------------------------------------------------- "<<endl
 		<<" | "<<spot[20]<<" | "<<spot[21]<<" | "<<spot[22]<<" | "<<spot[23]<<" | "<<spot[24]<<" | "<<spot[25]<<" | "
 		<<spot[26]<<" | "<<spot[27]<<" | "<<spot[28]<<" | "<<spot[29]<<" | "<<endl
-		<<" ---------------------------------------------------               " <<CustomerCount<<" Customer in the system"<<endl<<endl;
+		<<" ---------------------------------------------------               " <<CustomerCount<<" Customer(s) in the system"<<endl<<endl;
     }
     void updateScreen(int odldSpot, int aSpot, char passtype, char action ) { 
     	string mySpot = to_string(aSpot);
@@ -69,12 +69,14 @@ class Screen{
 		}
 	}
 	int getEmptySpot(){
-		for(int i= 0; i<30; i++ ){
-			if(spot[i] == to_string(i))
-			cout<<"Next Parking Spot Available: " <<i<<endl;
-				return i;		
+		int i = 0;
+		while(spot[i] != to_string(i) && i < 30){
+			i++;		
 		}
-		
+		if(spot[i] == to_string(i)){
+				cout<<"Next Parking Spot Available: " <<i<<endl;
+			}
+		return i ;
 	}
 
 };

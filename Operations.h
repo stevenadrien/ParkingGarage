@@ -69,10 +69,10 @@ public:
         basicPassPrice = 50;
         dayPassPrice = 5;
         
-        totalPassesLeft=300;
-        totalPremiumPassesLeft=100;
-        totalBasicPassesLeft=150;
-        totalDayPassesLeft=50;
+        totalPassesLeft=30;
+        totalPremiumPassesLeft=10;
+        totalBasicPassesLeft=15;
+        totalDayPassesLeft=5;
         
         totalRevenueGenerated = 0;
         totalRevenueGeneratedFromPremiumPasses = 0;

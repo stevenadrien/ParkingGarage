@@ -15,19 +15,7 @@
  
  and a Time object, to keep track of the unfolding of Time :)
  
- "1. Park A Car"<<endl;
- cout << "2. Un-Park A Car"<<endl;
- cout << "3. Issue A New Parking Pass"<<endl;
- cout << "4. Renew A Parking Pass"<<endl;
- cout << "5. Set Parking Pass Prices"<<endl;
- cout << "6. Who Is In The Garage"<<endl;
- cout << "7. Which Reserved Spots Are Already Taken"<<endl;
- cout << "8. Display Operations Analytics"<<endl;
- cout << "9. Display Business Analytics"<<endl;
- cout << "10. Edit Customer Info"<<endl;
- 
- 
- 
+
  
  Relevant functionalities:
  --ddACustomer(int customerID) --->think of customerID as the index needed to access a particular customer's information, within the Customer array object
@@ -62,7 +50,6 @@
 #include "Operations.h"
 #include <string>
 #include <chrono>
-#include "Screen.h"
 
 
 
@@ -73,12 +60,11 @@ class ParkingGarage
     //100 premium
     //50 day passes
 private:
-    Customer customers[30];
+    Customer customers[300];
     int customerCount;
-    Security security;
+    Security protocols;
     Operations operations;
     std::chrono::time_point<std::chrono::system_clock> start, end;
-    Screen garageScreen ;
 
     
 
@@ -92,25 +78,22 @@ public:
     {
         customerCount = 0;
         start = std::chrono::system_clock::now();
-		garageScreen.displayScreen(0, 0,0, 0, 0);
+
         
     }
     
     
     string getLogin()
     {
-        return security.getLogin();
+        return protocols.getLogin();
     
     }
     
     string getAdminName()
     {
-        return security.getName();
+        return protocols.getName();
     }
     
-    int getCustomerCount(){
-    	return customerCount;
-		}
     
     //Relevant functions of the parking garage ; DEH MEATZZ OF DEH PROGRAM
     //Add a customer
@@ -130,7 +113,7 @@ public:
     
     void addACustomer()
     {
-        if(customerCount < 30)
+        if(customerCount != 300)
         {
             customers[customerCount].createNewCustomer();
             
@@ -143,32 +126,13 @@ public:
             cout<<"New Customer created."<<endl<<endl;
             
             customerCount++;
-			updateScreen(-1, customers[customerCount].getParkingSpot(), customers[customerCount].getParkingPassType(), 'r' );
+
 
         }
         
-        else if(customerCount == 30)
+        else if(customerCount == 300)
         {
-        	bool foundExpired = true;
-        	int i = 0;
-        	while(customers[i].isItExpired() && i<30 ){
-        		i= i+1;
-			}
-			if(i<30){
-    			customers[i].createNewCustomer();
-        		setParkingPassInfo(customerCount);
-        		weHaveANewCustomer(customerCount);
-        		customerCount--;
-        		cout<<"New Customer created."<<endl<<endl;
-        		customerCount++;
-				updateScreen(-1, customers[i].getParkingSpot(), customers[i].getParkingPassType(), 'r' );
-				
-			}
-			else{
-				cout<<"Parking garage at maximum customer capacity.  I'm sorry but we cannot service you!"<<endl;
-            	system("pause");
-			}
-            	
+            cout<<"Parking garage at maximum customer capacity.  I'm sorry but we cannot service you!"<<endl;
             return;
         }
         
@@ -177,74 +141,69 @@ public:
     
     void editCustomerInfo(int customerID)
     {
-    	if(customerCount !=0 ){
-			
-	        int userChoice;
-	        
-	        do
-	        {
-	            cout<<"Here is Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + "'s information:"<<endl;
-	            
-	            cout<<"First Name: "<<customers[customerID].getFirstName()<<endl;
-	            cout<<"Last Name: "<<customers[customerID].getLastName()<<endl;
-	            cout<<"Phone Number: "<<customers[customerID].getPhoneNumber()<<endl;
-	            
-	            cout<<"Year Of Vehicle: "<<customers[customerID].getVehicleYear()<<endl;
-	            cout<<"Make Of Vehicle: "<<customers[customerID].getVehicleMake()<<endl;
-	            cout<<"Model Of Vehicle: "<<customers[customerID].getVehicleModel()<<endl;
-	            cout<<"Plate Number Of Vehicle: "<<customers[customerID].getVehiclePlateNumber()<<endl<<endl;
-	            
-	        
-	            cout<<"What would you like to do: "<<endl;
-	            cout<<"1. Edit Customer's First Name"<<endl;
-	            cout<<"2. Edit Customer's Last Name"<<endl;
-	            cout<<"3. Edit Customer's Phone Number"<<endl;
-	            cout<<"4. Edit Customer's Vehicle Year"<<endl;
-	            cout<<"5. Edit Customer's Vehicle Make"<<endl;
-	            cout<<"6. Edit Customer's Vehicle Model"<<endl;
-	            cout<<"7. Edit Customer's Vehicle Plate Number"<<endl;
-	            cout<<"8.  Exit Customer Information Wizard"<<endl;
-	            
-	            cin>>userChoice;
-	            
-	            switch(userChoice)
-	            {
-	                case 1:
-	                    customers[customerID].editCustomerFirstName();
-	                    break;
-	                    
-	                case 2:
-	                    customers[customerID].editCustomerLastName();
-	                    break;
-	                    
-	                case 3:
-	                    customers[customerID].editCustomerPhoneNumber();
-	                    break;
-	                
-	                case 4:
-	                    customers[customerID].editCustomerVehicleYear();
-	                    break;
-	                    
-	                case 5:
-	                    customers[customerID].editCustomerVehicleMake();
-	                    break;
-	                    
-	                case 6:
-	                    customers[customerID].editCustomerVehicleModel();
-	                    break;
-	                    
-	                case 7:
-	                    customers[customerID].editCustomerVehicleLicensePlateNumber();
-	                    break;
-	                
-	            }
-	            
-	            
-	            
-	        } while (userChoice != 8);
-	    }
-	    else
-	    	cout<<"No Customer is currently in the system."<<endl;
+        int userChoice;
+        
+        do
+        {
+            cout<<"Here is Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + "'s information:"<<endl;
+            
+            cout<<"First Name: "<<customers[customerID].getFirstName()<<endl;
+            cout<<"Last Name: "<<customers[customerID].getLastName()<<endl;
+            cout<<"Phone Number: "<<customers[customerID].getPhoneNumber()<<endl;
+            
+            cout<<"Year Of Vehicle: "<<customers[customerID].getVehicleYear()<<endl;
+            cout<<"Make Of Vehicle: "<<customers[customerID].getVehicleMake()<<endl;
+            cout<<"Model Of Vehicle: "<<customers[customerID].getVehicleModel()<<endl;
+            cout<<"Plate Number Of Vehicle: "<<customers[customerID].getVehiclePlateNumber()<<endl<<endl;
+            
+        
+            cout<<"What would you like to do: "<<endl;
+            cout<<"1. Edit Customer's First Name"<<endl;
+            cout<<"2. Edit Customer's Last Name"<<endl;
+            cout<<"3. Edit Customer's Phone Number"<<endl;
+            cout<<"4. Edit Customer's Vehicle Year"<<endl;
+            cout<<"5. Edit Customer's Vehicle Make"<<endl;
+            cout<<"6. Edit Customer's Vehicle Model"<<endl;
+            cout<<"7. Edit Customer's Vehicle Plate Number"<<endl;
+            cout<<"8.  Exit Customer Information Wizard"<<endl;
+            
+            cin>>userChoice;
+            
+            switch(userChoice)
+            {
+                case 1:
+                    customers[customerID].editCustomerFirstName();
+                    break;
+                    
+                case 2:
+                    customers[customerID].editCustomerLastName();
+                    break;
+                    
+                case 3:
+                    customers[customerID].editCustomerPhoneNumber();
+                    break;
+                
+                case 4:
+                    customers[customerID].editCustomerVehicleYear();
+                    break;
+                    
+                case 5:
+                    customers[customerID].editCustomerVehicleMake();
+                    break;
+                    
+                case 6:
+                    customers[customerID].editCustomerVehicleModel();
+                    break;
+                    
+                case 7:
+                    customers[customerID].editCustomerVehicleLicensePlateNumber();
+                    break;
+                
+            }
+            
+            
+            
+        } while (userChoice != 8);
         
     }
     
@@ -261,197 +220,166 @@ public:
         
         while(validParkingPassTypeChoice == false)
         {
-	        if(operations.getTotalPassesLeft() != 0)
-			{
-				char type;
-	            cout<<"Enter parking pass type (p for premium, b for basic, d for day pass): "<<endl;
-	            cin>>type;
-	            
-	        
-	            if(type == 'p')
-	            {
-	                if( operations.getTotalPremiumPassesLeft() != 0 )
-	                {
-	                    customers[customerID].setParkingPassType(type);
-	                    
-	                    customers[customerID].setDuration(90);
-	                    
-	                    validParkingPassTypeChoice = true;
-	
-	                    
-	                    
-	                    int spot;
-	                    
-	                    bool validParkingSpotChoice = false;
-	
-	                    
-	                    do
-	                    {
-	                    
-	                        cout<<"Enter customer's reserved parking spot number (from 0-9): "<<endl;
-	                        cin>>spot;
-	                        if(spot>=0 && spot <10){
-	                    
-		                        if(customerCount == 0)
-		                        {
-		                            customers[customerID].setParkingSpot(spot);
-		                            cout<<"Premium parking spot #"<<spot<<" has been reserved."<<endl<<endl;
-		
-		                            cout<<"Premium pass issued"<<endl;
-		                            return;
-		                        }
-		                    
-		                    
-		                        //Check whether or not that parking spot is open
-		                        if(customerCount > 0)
-		                        {
-		                            int x = 0;
-		                            bool spotAlreadyTaken;
-		                        
-		                            while(x < customerCount)
-		                            {
-		                                if(customers[x].getParkingPassType() == 'p')
-		                                {
-		                                    if(customers[x].getParkingSpot() == spot)
-		                                    {
-		                                        spotAlreadyTaken = true;
-		                                        break;
-		                                    }
-		                                
-		                                    if(customers[x].getParkingSpot() != spot)
-		                                    {
-		                                        spotAlreadyTaken = false;
-		                                    }
-		                                }
-		                                    
-		                                x++;
-		                            }
-		                                
-		                                
-		                            if(spotAlreadyTaken == true)
-		                            {
-		                            	whichReservedSpotsAreAlreadyTaken();
-		                                cout<<"Sorry, that premium parking spot is already reserved.  Please select another."<<endl;
-		                                validParkingSpotChoice = false;
-		                            }
-		                                
-		                            if(spotAlreadyTaken == false)
-		                            {
-		                                    
-		                                cout<<"Premium parking spot is open for reservation."<<endl;
-		                                customers[customerID].setParkingSpot(spot);
-		                                cout<<"Premium parking spot #"<<spot<<" has been reserved."<<endl;
-		                                    
-		                                cout<<"Premium pass issued."<<endl;
-		                                updateScreen(-1, customers[customerCount].getParkingSpot(), customers[customerCount].getParkingPassType(), 'r' );
-		                                    
-		                                validParkingSpotChoice = true;
-		                                
-		                            }
-		                        }
-		                    }
-		                    else {
-		                    	cout<<"You can only reserved spots 0-9"<<endl;
-		                    	validParkingSpotChoice = false;
-							}
-		                    
-	                    } while(validParkingSpotChoice == false);
-	                }
-	                
-	                    else
-	                    {
-	                    	system("CLS");
-							didplayScreen();
-	                        cout<<"No more premium passes available.  Please select another parking pass tier."<<endl;
-	                        validParkingPassTypeChoice = false;
-	                    }
-	                    
-	            }
-	            
-	            
-	        
-	            
-	            if(type == 'b')
-	            {
-	                if(operations.getTotalBasicPassesLeft() != 0)
-	                {
-	                    customers[customerID].setParkingPassType(type);
-	                    
-	                    customers[customerID].setDuration(90);
-	                    
-	                    cout<<"Basic pass issued"<<endl;
-	                    validParkingPassTypeChoice = true;
-	                }
-	                
-	                else
-	                {
-	                	system("CLS");
-						didplayScreen();
-	                    cout<<"No more basic passes available.  Please select another parking pass tier."<<endl;
-	                    validParkingPassTypeChoice = false;
-	                }
-	            }
-	            
-	                
-	            if(type == 'd')
-	            {
-	                if( operations.getTotalDayPassesLeft() != 0)
-	                {
-	                    customers[customerID].setParkingPassType(type);
-	                    customers[customerID].setDuration(60);
-	
-	                    cout<<"Day pass issued"<<endl;
-	                    validParkingPassTypeChoice = true;
-	                }
-	                
-	                else
-	                {
-	                	system("CLS");
-						didplayScreen();
-	                    cout<<"No more day passes available.  Please select another parking pass tier."<<endl;
-	                    validParkingPassTypeChoice = false;
-	                }
-	            }
-			}
-			else
-			{	
-				system("CLS");
-				didplayScreen();
-	            cout<<"Sorry! No more parking passes available"<<endl;
-	            validParkingPassTypeChoice = true;
-				
-			}
+            char type;
+            cout<<"Enter parking pass type (p for premium, b for basic, d for day pass): "<<endl;
+            cin>>type;
+            
+        
+            if(type == 'p')
+            {
+                if( operations.getTotalPremiumPassesLeft() != 0 )
+                {
+                    customers[customerID].setParkingPassType(type);
+                    
+                    customers[customerID].setDuration(50);
+                    
+                    validParkingPassTypeChoice = true;
+
+                    
+                    
+                    int spot;
+                    
+                    bool validParkingSpotChoice = false;
+
+                    
+                    do
+                    {
+                    
+                        cout<<"Enter customer's reserved parking spot number (from 0-99): "<<endl;
+                        cin>>spot;
+                    
+                        if(customerCount == 0)
+                        {
+                            customers[customerID].setParkingSpot(spot);
+                            cout<<"Premium parking spot #"<<spot<<" has been reserved."<<endl<<endl;
+
+                            cout<<"Premium pass issued"<<endl;
+                            return;
+                        }
+                    
+                    
+                        //Check whether or not that parking spot is open
+                        if(customerCount > 0)
+                        {
+                            int x = 0;
+                            bool spotAlreadyTaken;
+                        
+                            while(x < customerCount)
+                            {
+                                if(customers[x].getParkingPassType() == 'p')
+                                {
+                                    if(customers[x].getParkingSpot() == spot)
+                                    {
+                                        spotAlreadyTaken = true;
+                                        break;
+                                    }
+                                
+                                    if(customers[x].getParkingSpot() != spot)
+                                    {
+                                        spotAlreadyTaken = false;
+                                    }
+                                }
+                                    
+                                x++;
+                            }
+                                
+                                
+                            if(spotAlreadyTaken == true)
+                            {
+                                cout<<"Sorry, that premium parking spot is already reserved.  Please select another."<<endl;
+                                validParkingSpotChoice = false;
+                            }
+                                
+                            if(spotAlreadyTaken == false)
+                            {
+                                    
+                                cout<<"Premium parking spot is open for reservation."<<endl;
+                                customers[customerID].setParkingSpot(spot);
+                                cout<<"Premium parking spot #"<<spot<<" has been reserved."<<endl;
+                                    
+                                cout<<"Premium pass issued."<<endl;
+                                    
+                                validParkingSpotChoice = true;
+                                
+                            }
+                        }
+                    } while(validParkingSpotChoice == false);
+                }
+                
+                    else
+                    {
+                        cout<<"No more premium passes available.  Please select another parking pass tier."<<endl;
+                        validParkingPassTypeChoice = false;
+                    }
+                    
+            }
+            
+            
+        
+            
+            if(type == 'b')
+            {
+                if(operations.getTotalBasicPassesLeft() != 0)
+                {
+                    customers[customerID].setParkingPassType(type);
+                    
+                    customers[customerID].setDuration(30);
+
+                    
+                    cout<<"Basic pass issued"<<endl;
+                    validParkingPassTypeChoice = true;
+                }
+                
+                else
+                {
+                    cout<<"No more basic passes available.  Please select another parking pass tier."<<endl;
+                    validParkingPassTypeChoice = false;
+                }
+            }
+            
+                
+            if(type == 'd')
+            {
+                if( operations.getTotalDayPassesLeft() != 0)
+                {
+                    customers[customerID].setParkingPassType(type);
+                    customers[customerID].setDuration(15);
+
+                    cout<<"Day pass issued"<<endl;
+                    validParkingPassTypeChoice = true;
+                }
+                
+                else
+                {
+                    cout<<"No more day passes available.  Please select another parking pass tier."<<endl;
+                    validParkingPassTypeChoice = false;
+                }
+            }
+                
+                
+        
         }while (validParkingPassTypeChoice == false);
     }
     
     
     void renewParkingPass(int customerID)
     {
-    	if(customerCount != 0)
-    	{
-	        bool isPassValid = customers[customerID].isItExpired();
-	        
-	        if(isPassValid == true)
-	        {
-	            
-	            customers[customerID].renewParkingPass();
-	            if(customers[customerCount].getParkingPassType() == 'p'){
-	            	int Oldspot = customers[customerID].getParkingSpot();
-	            	updateScreen(Oldspot, customers[customerCount].getParkingSpot(), customers[customerCount].getParkingPassType(), 'r' );	
-				}
-	            
-	            cout<<"Parking Pass renewed!"<<endl<<endl;
-	            return;
-	            
-	        }
-	        
-	        if(isPassValid == false)
-	        {
-	            cout<<"No need to renew your parking pass...it's still valid!"<<endl<<endl;
-	        }
-		}
-		else
-			cout<<"No Customer is currently in the system"<<endl<<endl;
+        bool isPassValid = customers[customerID].isItExpired();
+        
+        if(isPassValid == true)
+        {
+            
+            customers[customerID].renewParkingPass();
+            
+            cout<<"Parking Pass renewed!"<<endl<<endl;
+            return;
+        }
+        
+        if(isPassValid == false)
+        {
+            cout<<"No need to renew your parking pass...it's still valid!"<<endl<<endl;
+        }
+    
     }
     
     void aPassHasExpired(int customerID)
@@ -472,7 +400,6 @@ public:
         {
             operations.aDayPassHasExpired();
         }
-        updateScreen(customers[customerID].getParkingSpot() , -1, customers[customerID].getParkingPassType(), 'e' );
     }
     
     void weHaveANewCustomer(int customerID)
@@ -480,7 +407,6 @@ public:
         if(customers[customerCount].getParkingPassType() == 'p')
         {
             operations.premiumPassIssued();
-            updateScreen(-1 , customers[customerID].getParkingSpot(), customers[customerID].getParkingPassType(), 'r' );
         }
         
         if(customers[customerCount].getParkingPassType() == 'b')
@@ -492,7 +418,6 @@ public:
         {
             operations.dayPassIssued();
         }
-        
     }
     
     
@@ -547,58 +472,52 @@ public:
     
     void parkACar(int customerID)
     {
-    	if(customerCount != 0){
-			
-	        bool isPassExpired = customers[customerID].isItExpired();
-	        
-	                
-	        switch(isPassExpired)
-	        {
-	                case false:
-	                if(customers[customerID].parkedInTheGarage() == false)
-	                {
-	                    customers[customerID].enteringTheGarage();
-	                    cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " has entered the garage!"<<endl<<endl;
-	                    operations.aCarHasEnteredTheGarage();
-	                    
-	                    if(customers[customerID].getParkingPassType() == 'p')
-	                    {
-	                        operations.aPremiumPassCustomerHasEnteredTheGarage();
-	                    }
-	                    
-	                    if(customers[customerID].getParkingPassType() == 'b')
-	                    {
-	                    	customers[customerID].setParkingSpot(getNextSpot());
-	                        operations.aBasicPassCustomerHasEnteredTheGarage();
-	                    }
-	                    
-	                    if(customers[customerID].getParkingPassType() == 'd')
-	                    {
-	                    	customers[customerID].setParkingSpot(getNextSpot());
-	                        operations.aDayPassCustomerHasEnteredTheGarage();
-	                    }
-	                	updateScreen(-1, customers[customerID].getParkingSpot() , customers[customerID].getParkingPassType(), 'p' );
-	            	}
-	                else
-	                {
-	                    cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " is..already in the garage...?"<<endl;
-	                    cout<<"Someone may have forged their credentials and attempting to access the parking garage illegally"<<endl<<endl;
-	                }
-	                
-	                break;
-	                
-	                
-	            case true:
-	                cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " no longer has a valid parking pass and, thus, is no longer authorized to enter the parking garage."<<endl;
-	                
-	                aPassHasExpired(customerID);
-	                
-	                promptRenewalOfPass(customerID);
-	                break;
-	        }
-		}
-		else
-			 cout<<"No Vehicle is currently in the system"<<endl;
+        bool isPassExpired = customers[customerID].isItExpired();
+        
+                
+        switch(isPassExpired)
+        {
+                case false:
+                if(customers[customerID].parkedInTheGarage() == false)
+                {
+                    customers[customerID].enteringTheGarage();
+                    cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " has entered the garage!"<<endl<<endl;
+                    operations.aCarHasEnteredTheGarage();
+                    
+                    if(customers[customerID].getParkingPassType() == 'p')
+                    {
+                        operations.aPremiumPassCustomerHasEnteredTheGarage();
+                    }
+                    
+                    if(customers[customerID].getParkingPassType() == 'b')
+                    {
+                        operations.aBasicPassCustomerHasEnteredTheGarage();
+                    }
+                    
+                    if(customers[customerID].getParkingPassType() == 'd')
+                    {
+                        operations.aDayPassCustomerHasEnteredTheGarage();
+                    }
+                }
+                
+                else
+                {
+                    cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " is..already in the garage...?"<<endl;
+                    cout<<"Someone may have forged their credentials and attempting to access the parking garage illegally"<<endl<<endl;
+                }
+                
+                break;
+                
+                
+            case true:
+                cout<<"Customer #" + to_string(customerID) + " - " + customers[customerID].getCustomerName() + " no longer has a valid parking pass and, thus, is no longer authorized to enter the parking garage."<<endl;
+                
+                aPassHasExpired(customerID);
+                
+                promptRenewalOfPass(customerID);
+                break;
+        }
+        
     }
     
     
@@ -626,7 +545,7 @@ public:
                 operations.aDayPassCustomerHasExitedTheGarage();
             }
             
-            updateScreen(-1, customers[customerID].getParkingSpot() , customers[customerID].getParkingPassType(), 'u' );
+            
             
             bool isPassExpired = customers[customerID].isItExpired();
             
@@ -991,17 +910,9 @@ public:
         cout<<"Testing complete"<<endl;
     }
 
-    void didplayScreen(){
-		garageScreen.displayScreen(operations.getTotalCarsCurrentlyInTheGarage(), operations.getTotalPremiumPassCustomersCurrentlyInTheGarage(),
-		                           operations.getTotalBasicPassCustomersCurrentlyInTheGarage() , operations.getTotalDayPassCustomersCurrentlyInTheGarage(), getCustomerCount() );
-	}
-    void updateScreen(int odldSpot, int aSpot, char passtype, char action){
-    	garageScreen.updateScreen(odldSpot, aSpot, passtype, action );
-	}
     
-    int getNextSpot(){
-    	return garageScreen.getEmptySpot();
-	}
+    
+    
     
     
 };
